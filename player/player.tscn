@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://duoixavc02teg"]
+[gd_scene load_steps=41 format=3 uid="uid://duoixavc02teg"]
 
 [ext_resource type="Script" uid="uid://cwvgjqrq31d4e" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cqsg6us6ec4yc" path="res://sheets/john_cereal.png" id="2_g1dw6"]
@@ -8,8 +8,9 @@
 [ext_resource type="AudioStream" uid="uid://cuio2gtbt14m8" path="res://c78/Roland CR-78 Samples/RS/CR78 RS-01.wav" id="5_hg6s5"]
 [ext_resource type="Texture2D" uid="uid://docavkfs8scon" path="res://sheets/dust.png" id="5_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://dma8bihqwra24" path="res://c78/Roland CR-78 Samples/HH/CR78 HH OP-07.wav" id="5_rgyib"]
-[ext_resource type="AudioStream" uid="uid://dcuae4sa27fcq" path="res://aud/Throw.wav" id="6_8t03j"]
+[ext_resource type="AudioStream" uid="uid://c0lrxbguqbve2" path="res://c78/Roland CR-78 Samples/TB/CR78 TB2-01.wav" id="6_8t03j"]
 [ext_resource type="Script" uid="uid://c5nuirupvdm01" path="res://player/player_dust.gd" id="6_g6k8r"]
+[ext_resource type="AudioStream" uid="uid://xqykekpdb0k3" path="res://c78/Roland CR-78 Samples/HH/CR78 HH METALLIC BEAT-04.wav" id="11_ebec5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkbax"]
 radius = 6.08276
@@ -456,4 +457,10 @@ process_material = SubResource("ParticleProcessMaterial_qjkh3")
 script = ExtResource("6_g6k8r")
 character = NodePath("..")
 
+[node name="Jumping" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_ebec5")
+volume_db = -6.22
+bus = &"SFX"
+
 [connection signal="dust" from="." to="GPUParticles2D" method="dust"]
+[connection signal="dust" from="." to="Jumping" method="play"]

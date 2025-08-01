@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b4lnucj3d4ql1"]
+[gd_scene load_steps=14 format=3 uid="uid://b4lnucj3d4ql1"]
 
 [ext_resource type="Texture2D" uid="uid://beurerfmaatq7" path="res://sheets/grain1.png" id="1_iht00"]
 [ext_resource type="Script" uid="uid://cqp3o3l4roolw" path="res://shelter/shelter.gd" id="1_sfjse"]
-[ext_resource type="AudioStream" uid="uid://c0px3y3tlcs4e" path="res://aud/shelter_close.wav" id="3_rfiox"]
-[ext_resource type="AudioStream" uid="uid://bhmwwbacv56i0" path="res://aud/shelter_open.wav" id="4_ovd5g"]
+[ext_resource type="AudioStream" uid="uid://b4o6gvm17quks" path="res://aud/shelter_full.wav" id="3_wtw57"]
+[ext_resource type="AudioStream" uid="uid://682fj2mpw4ct" path="res://aud/shelter.wav" id="4_ovd5g"]
 [ext_resource type="PackedScene" uid="uid://b527bw2spdmmk" path="res://ui/ascension.tscn" id="4_wtw57"]
+[ext_resource type="AudioStream" uid="uid://brh64g551ts8u" path="res://freesound/399776__klankbeeld__rain-on-bitumen-roof-indoors-170817_1213.wav" id="5_jevl1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgxy5"]
 size = Vector2(72, 100)
@@ -57,7 +58,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Open:playing")
+tracks/3/path = NodePath("Close2:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -66,10 +67,46 @@ tracks/3/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Close:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-6.651]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Close3:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Close3:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-35.388]
+}
 
 [sub_resource type="Animation" id="Animation_iht00"]
 resource_name = "close"
-length = 20.0
+length = 300.0
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -102,7 +139,7 @@ tracks/2/path = NodePath("Close:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.05),
+"times": PackedFloat32Array(0, 7.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -110,14 +147,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Open:playing")
+tracks/3/path = NodePath("Close2:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(12.6, 13.3852),
+"times": PackedFloat32Array(0, 12.6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false]
 }
 tracks/4/type = "method"
 tracks/4/imported = false
@@ -132,6 +169,42 @@ tracks/4/keys = {
 "args": [&"Success"],
 "method": &"change_karma"
 }]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Close:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 8.28698),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-43.524, 0.913]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Close3:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(13.4457, 14.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Close3:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(14.8, 19.2006, 271.825, 280.415),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-35.388, 0.0, 0.0, -50.5]
 }
 
 [sub_resource type="Animation" id="Animation_rfiox"]
@@ -165,7 +238,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Open:playing")
+tracks/2/path = NodePath("Close2:playing")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -181,16 +254,6 @@ _data = {
 &"close": SubResource("Animation_iht00"),
 &"open": SubResource("Animation_rfiox")
 }
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d322i"]
-random_pitch = 1.24
-streams_count = 1
-stream_0/stream = ExtResource("3_rfiox")
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_jevl1"]
-random_pitch = 1.24
-streams_count = 1
-stream_0/stream = ExtResource("4_ovd5g")
 
 [node name="Shelter" type="Area2D"]
 collision_mask = 10
@@ -219,12 +282,16 @@ libraries = {
 autoplay = "RESET"
 
 [node name="Close" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_d322i")
+stream = ExtResource("3_wtw57")
 volume_db = -6.651
 
-[node name="Open" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamRandomizer_jevl1")
-volume_db = -6.651
+[node name="Close2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ovd5g")
+volume_db = -9.388
+
+[node name="Close3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jevl1")
+volume_db = -35.388
 
 [node name="Ascension" parent="." instance=ExtResource("4_wtw57")]
 visible = false

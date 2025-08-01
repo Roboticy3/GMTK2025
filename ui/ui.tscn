@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://do6t17wivmhgt"]
+[gd_scene load_steps=12 format=3 uid="uid://do6t17wivmhgt"]
 
 [ext_resource type="Texture2D" uid="uid://blp8moibl8x5j" path="res://sheets/ascension.png" id="2_obcwv"]
 [ext_resource type="Texture2D" uid="uid://cqeroyskhuspw" path="res://sheets/pip_big.png" id="2_vkava"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://di6ym36mr63mw" path="res://ui/timer.gd" id="4_bo1jx"]
 [ext_resource type="Texture2D" uid="uid://rqdbsphwgjc3" path="res://sheets/pip_baby.png" id="5_gycre"]
 [ext_resource type="SpriteFrames" uid="uid://b0ipc22beuenp" path="res://sheets/pipframes.tres" id="5_obcwv"]
-[ext_resource type="AudioStream" uid="uid://cp7s0lvtvtig8" path="res://aud/confirm.wav" id="5_tf0e0"]
+[ext_resource type="AudioStream" uid="uid://c16lexgnbq3uh" path="res://c78/Roland CR-78 Samples/CB/CR78 CB-01.wav" id="8_gycre"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bo1jx"]
 atlas = ExtResource("2_obcwv")
@@ -41,10 +41,6 @@ animations = [{
 "name": &"fill",
 "speed": 5.0
 }]
-
-[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_obcwv"]
-streams_count = 1
-stream_0/stream = ExtResource("5_tf0e0")
 
 [node name="Ui" type="CanvasLayer"]
 layer = 2
@@ -101,7 +97,7 @@ scale = Vector2(0.641975, 1.76667)
 polygon = PackedVector2Array(-5, 15, -4, -15, 4, -15, 4, 15)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamRandomizer_obcwv")
+stream = ExtResource("8_gycre")
 volume_db = -5.333
 bus = &"SFX"
 
