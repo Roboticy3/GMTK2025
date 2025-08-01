@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://duoixavc02teg"]
+[gd_scene load_steps=38 format=3 uid="uid://duoixavc02teg"]
 
 [ext_resource type="Script" uid="uid://cwvgjqrq31d4e" path="res://player/player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://cqsg6us6ec4yc" path="res://sheets/john_cereal.png" id="2_g1dw6"]
@@ -6,11 +6,9 @@
 [ext_resource type="Script" uid="uid://d4jv5014whdx7" path="res://player/hand.gd" id="4_boad6"]
 [ext_resource type="Script" uid="uid://ib1qphbqfggx" path="res://player/player_motion_tree.gd" id="4_yw30f"]
 [ext_resource type="AudioStream" uid="uid://cuio2gtbt14m8" path="res://c78/Roland CR-78 Samples/RS/CR78 RS-01.wav" id="5_hg6s5"]
-[ext_resource type="Texture2D" uid="uid://docavkfs8scon" path="res://sheets/dust.png" id="5_qjkh3"]
 [ext_resource type="AudioStream" uid="uid://dma8bihqwra24" path="res://c78/Roland CR-78 Samples/HH/CR78 HH OP-07.wav" id="5_rgyib"]
 [ext_resource type="AudioStream" uid="uid://c0lrxbguqbve2" path="res://c78/Roland CR-78 Samples/TB/CR78 TB2-01.wav" id="6_8t03j"]
-[ext_resource type="Script" uid="uid://c5nuirupvdm01" path="res://player/player_dust.gd" id="6_g6k8r"]
-[ext_resource type="AudioStream" uid="uid://xqykekpdb0k3" path="res://c78/Roland CR-78 Samples/HH/CR78 HH METALLIC BEAT-04.wav" id="11_ebec5"]
+[ext_resource type="PackedScene" uid="uid://1ebgmnbenjx3" path="res://player/dust.tscn" id="9_2ieo8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rkbax"]
 radius = 6.08276
@@ -331,17 +329,6 @@ _data = {
 &"walking_right": SubResource("Animation_qjkh3")
 }
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qjkh3"]
-particle_flag_disable_z = true
-emission_shape_scale = Vector3(1, 2, 1)
-emission_shape = 1
-emission_sphere_radius = 5.99
-direction = Vector3(-1, -1, 0)
-spread = 0.0
-initial_velocity_min = 110.31
-initial_velocity_max = 158.68
-gravity = Vector3(0, 98, 0)
-
 [node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("tilemap_detector") groups=["Entity", "Player"]]
 texture_filter = 3
 collision_layer = 2
@@ -444,23 +431,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_g1dw6")
 }
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." node_paths=PackedStringArray("character")]
-modulate = Color(0.729004, 0.673871, 0.611733, 1)
+[node name="GPUParticles2D" parent="." node_paths=PackedStringArray("character") instance=ExtResource("9_2ieo8")]
 position = Vector2(0, 13)
-emitting = false
-amount = 16
-texture = ExtResource("5_qjkh3")
-lifetime = 0.1
-one_shot = true
-explosiveness = 0.5
-process_material = SubResource("ParticleProcessMaterial_qjkh3")
-script = ExtResource("6_g6k8r")
 character = NodePath("..")
 
-[node name="Jumping" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("11_ebec5")
-volume_db = -6.22
-bus = &"SFX"
-
 [connection signal="dust" from="." to="GPUParticles2D" method="dust"]
-[connection signal="dust" from="." to="Jumping" method="play"]

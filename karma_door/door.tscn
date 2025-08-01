@@ -1,0 +1,93 @@
+[gd_scene load_steps=11 format=3 uid="uid://e4vfptasviht"]
+
+[ext_resource type="Script" uid="uid://dn8sq4hnjhti0" path="res://karma_door/door.gd" id="1_o5kvk"]
+[ext_resource type="PackedScene" uid="uid://1ebgmnbenjx3" path="res://player/dust.tscn" id="2_gdqgc"]
+[ext_resource type="Texture2D" uid="uid://cmywvhr6pelpm" path="res://sheets/spoon.png" id="2_t1kk2"]
+[ext_resource type="Texture2D" uid="uid://blp8moibl8x5j" path="res://sheets/ascension.png" id="3_gdqgc"]
+[ext_resource type="Script" uid="uid://wk76hdti67vy" path="res://ui/karma_symbol_base.gd" id="4_p2hv8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5kvk"]
+height = 118.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hnqjs"]
+atlas = ExtResource("3_gdqgc")
+region = Rect2(320, 0, 64, 0)
+
+[sub_resource type="Animation" id="Animation_o5kvk"]
+resource_name = "open"
+length = 15.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5, 6, 8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, 7), Vector2(0, -139)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("GPUParticles2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_t1kk2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_t1kk2"]
+_data = {
+&"RESET": SubResource("Animation_t1kk2"),
+&"open": SubResource("Animation_o5kvk")
+}
+
+[node name="Door" type="Node2D"]
+script = ExtResource("1_o5kvk")
+level = 3
+
+[node name="Collider" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collider"]
+shape = SubResource("CapsuleShape2D_o5kvk")
+
+[node name="GPUParticles2D" parent="Collider" instance=ExtResource("2_gdqgc")]
+position = Vector2(0, -34)
+
+[node name="Spoon" type="Sprite2D" parent="Collider"]
+modulate = Color(0.605274, 0.605274, 0.605274, 1)
+position = Vector2(0, 28)
+rotation = -1.57079
+texture = ExtResource("2_t1kk2")
+
+[node name="Level" type="Sprite2D" parent="Collider"]
+position = Vector2(0, -17)
+texture = SubResource("AtlasTexture_hnqjs")
+script = ExtResource("4_p2hv8")
+atlas = SubResource("AtlasTexture_hnqjs")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Collider")
+libraries = {
+&"": SubResource("AnimationLibrary_t1kk2")
+}

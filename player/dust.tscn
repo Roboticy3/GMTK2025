@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://1ebgmnbenjx3"]
+
+[ext_resource type="Texture2D" uid="uid://docavkfs8scon" path="res://sheets/dust.png" id="1_m1u1h"]
+[ext_resource type="Script" uid="uid://c5nuirupvdm01" path="res://player/player_dust.gd" id="2_ckj8t"]
+[ext_resource type="AudioStream" uid="uid://xqykekpdb0k3" path="res://c78/Roland CR-78 Samples/HH/CR78 HH METALLIC BEAT-04.wav" id="2_jjf1e"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qjkh3"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(1, 2, 1)
+emission_shape = 1
+emission_sphere_radius = 5.99
+direction = Vector3(-1, -1, 0)
+spread = 0.0
+initial_velocity_min = 110.31
+initial_velocity_max = 158.68
+gravity = Vector3(0, 98, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+modulate = Color(0.729004, 0.673871, 0.611733, 1)
+emitting = false
+amount = 16
+texture = ExtResource("1_m1u1h")
+lifetime = 0.1
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource("ParticleProcessMaterial_qjkh3")
+script = ExtResource("2_ckj8t")
+
+[node name="DustSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_jjf1e")
+
+[connection signal="started" from="." to="DustSound" method="play"]

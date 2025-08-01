@@ -2,6 +2,11 @@ extends GPUParticles2D
 
 @export var character:CharacterBody2D
 
+func _ready() -> void:
+	dust()
+	if !character:
+		set_process(false)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var facing:Vector2 = character.facing
@@ -12,8 +17,7 @@ func _process(delta: float) -> void:
 	
 	scale = facing
 
-func _ready():
-	dust()
-
+signal started
 func dust():
+	started.emit()
 	emitting = true
