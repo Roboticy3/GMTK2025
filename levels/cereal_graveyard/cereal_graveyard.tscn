@@ -956,7 +956,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAFAAYAAAABAAEAAAAGAAYAAAACAAEAAAAHAAY
 tile_set = SubResource("TileSet_52c0i")
 
 [node name="PlayerSpawn" type="Node2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(197, 220)
+position = Vector2(1774, 322)
 
 [node name="ItemBase" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
 position = Vector2(0, -13)
@@ -1030,13 +1030,13 @@ shape = SubResource("RectangleShape2D_f1x2s")
 debug_color = Color(0, 0.6, 0.156863, 0.14902)
 
 [node name="FruitBranch" parent="FruitIntro" instance=ExtResource("5_52c0i")]
-position = Vector2(655, 470)
+position = Vector2(646, 469)
 
 [node name="FruitBranch2" parent="FruitIntro" instance=ExtResource("5_52c0i")]
 position = Vector2(670, 462)
 
 [node name="FruitBranch3" parent="FruitIntro" instance=ExtResource("5_52c0i")]
-position = Vector2(681, 451)
+position = Vector2(694, 440)
 
 [node name="FruitIntro2" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape")]
 collision_layer = 0

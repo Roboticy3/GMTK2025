@@ -1,4 +1,4 @@
-extends PinJoint2D
+extends Joint2D
 
 @export var player:CharacterBody2D
 
@@ -70,15 +70,14 @@ func grab(item:Item):
 	#remove glow
 	item.set_glow(false)
 	
-	#reparent into the player scene
-	item.reparent(player)
+	item.reparent(get_tree().root)
 	
 	#move the item closer to indicate it has been picked up
 	var d := distance_to_item(item)
-	item.position = Vector2.from_angle(randf_range(0.0, 2 * PI)) * 6.0
+	item.global_position = global_position + Vector2.from_angle(randf_range(0.0, 2 * PI)) * 6.0
 	
 	#pin to the hand
-	node_b = "../" + item.name
+	node_b = get_path_to(item)
 	
 	$Grab.play()
 

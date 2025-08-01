@@ -33,4 +33,4 @@ texture = SubResource("AtlasTexture_rfhe2")
 [connection signal="cut" from="ItemBase" to="PinJoint2D" method="queue_free"]
 [connection signal="cut" from="ItemBase" to="ItemBase/Sprite2D2" method="free"]
 [connection signal="grabbed" from="ItemBase" to="ItemBase/Sprite2D2" method="free"]
-[connection signal="grabbed" from="ItemBase" to="PinJoint2D" method="get_node_b" binds= [NodePath("")]]
+[connection signal="grabbed" from="ItemBase" to="PinJoint2D" method="set_node_b" binds= [NodePath("")]]
