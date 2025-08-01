@@ -1,15 +1,46 @@
-[gd_scene load_steps=9 format=3 uid="uid://do6t17wivmhgt"]
+[gd_scene load_steps=13 format=3 uid="uid://do6t17wivmhgt"]
 
 [ext_resource type="Texture2D" uid="uid://blp8moibl8x5j" path="res://sheets/ascension.png" id="2_obcwv"]
 [ext_resource type="Texture2D" uid="uid://cqeroyskhuspw" path="res://sheets/pip_big.png" id="2_vkava"]
 [ext_resource type="Script" uid="uid://btmoshul0s7gs" path="res://shelter/karma_pip.gd" id="3_bo1jx"]
 [ext_resource type="Script" uid="uid://cphrrcbh3k1cr" path="res://ui/food.gd" id="3_wl5ax"]
+[ext_resource type="Script" uid="uid://di6ym36mr63mw" path="res://ui/timer.gd" id="4_bo1jx"]
+[ext_resource type="Texture2D" uid="uid://rqdbsphwgjc3" path="res://sheets/pip_baby.png" id="5_gycre"]
 [ext_resource type="SpriteFrames" uid="uid://b0ipc22beuenp" path="res://sheets/pipframes.tres" id="5_obcwv"]
 [ext_resource type="AudioStream" uid="uid://cp7s0lvtvtig8" path="res://aud/confirm.wav" id="5_tf0e0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bo1jx"]
 atlas = ExtResource("2_obcwv")
 region = Rect2(320, 0, 64, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ay4pc"]
+atlas = ExtResource("5_gycre")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bi8hs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay4pc")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ay4pc")
+}],
+"loop": false,
+"name": &"fill",
+"speed": 5.0
+}]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_obcwv"]
 streams_count = 1
@@ -50,6 +81,12 @@ position = Vector2(32, 32)
 texture = ExtResource("2_vkava")
 script = ExtResource("3_bo1jx")
 atlas = SubResource("AtlasTexture_bo1jx")
+
+[node name="Timer" type="Node2D" parent="StatusBar"]
+position = Vector2(32.1597, 41.9475)
+scale = Vector2(1.39825, 1.39825)
+script = ExtResource("4_bo1jx")
+sprite_frames = SubResource("SpriteFrames_bi8hs")
 
 [node name="Food" type="Node2D" parent="StatusBar" node_paths=PackedStringArray("bar")]
 position = Vector2(88, 42.186)

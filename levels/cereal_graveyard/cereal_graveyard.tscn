@@ -956,7 +956,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAFAAYAAAABAAEAAAAGAAYAAAACAAEAAAAHAAY
 tile_set = SubResource("TileSet_52c0i")
 
 [node name="PlayerSpawn" type="Node2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(1774, 322)
+position = Vector2(252, 239)
 
 [node name="ItemBase" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
 position = Vector2(0, -13)

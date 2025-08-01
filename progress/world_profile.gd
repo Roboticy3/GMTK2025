@@ -2,7 +2,8 @@ class_name WorldProfile extends Node
 
 #region loose
 #loose objects to preseve between sessions. Mostly items in shelters
-@export var loose:Array[NodePath]
+#they are also assumed to be direct children of the main scene.
+@export var loose:Array[PackedScene] = []
 
 func loose_cycle(tree:SceneTree, loose_group:StringName, safe_group:StringName):
 	#clear fruit on the ground that are not in a shelter
@@ -13,8 +14,20 @@ func loose_cycle(tree:SceneTree, loose_group:StringName, safe_group:StringName):
 			if o.is_in_group(loose_group):
 				safe[o] = true
 	
+	loose = []
 	for l in tree.get_nodes_in_group(loose_group):
-		if !safe.has(l): l.queue_free()
+		if safe.has(l): 
+			var pack := PackedScene.new()
+			pack.pack(l)
+			loose.append(pack)
+		else:
+			l.queue_free()
+
+func loose_reload(tree:SceneTree, loose_group:StringName):
+	tree.call_group(loose_group, "free")
+	for pack in loose:
+		var l := pack.instantiate()
+		tree.current_scene.add_child(l)
 #endregion
 
 #region fruit
@@ -79,3 +92,7 @@ func fruit_reload(tree:SceneTree, branch_group:StringName) -> void:
 func all_cycle(tree:SceneTree):
 	loose_cycle(tree, &"Loose", &"Shelter")
 	fruit_cycle(tree, &"FruitBranch", &"Fruit")
+
+func all_reload(tree:SceneTree):
+	loose_reload(tree, &"Loose")
+	fruit_reload(tree, &"FruitBranch")

@@ -33,6 +33,4 @@ func karma_to_position(k:int) -> Vector2:
 	return Vector2(0.0, 64.0 * k - 160.0)
 
 func next_cycle():
-	profile.current_food -= 4
-	world_profile.all_cycle(get_tree())
-	
+	GameManager.next_cycle()

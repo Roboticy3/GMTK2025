@@ -1,0 +1,52 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1yc0pdnx8yu1"]
+
+[ext_resource type="Script" uid="uid://dw8rv5dwxdvxo" path="res://items/fruit.gd" id="1_nsual"]
+[ext_resource type="Shader" uid="uid://dxqqxjwtaf370" path="res://items/item_glow.gdshader" id="2_wtary"]
+[ext_resource type="Texture2D" uid="uid://dkejfd1w3r40q" path="res://sheets/froot_loops.png" id="3_3bxqt"]
+[ext_resource type="AudioStream" uid="uid://c3vavt0iei6au" path="res://c78/Roland CR-78 Samples/LC/CR78 LC-01.wav" id="4_sfru0"]
+[ext_resource type="AudioStream" uid="uid://b6xg06soyhwq1" path="res://c78/Roland CR-78 Samples/LB/CR78 LB-01.wav" id="5_de24s"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0fue"]
+shader = ExtResource("2_wtary")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3h4lt"]
+radius = 3.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q54vd"]
+atlas = ExtResource("3_3bxqt")
+region = Rect2(0, 0, 16, 0)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iemro"]
+streams_count = 2
+stream_0/stream = ExtResource("4_sfru0")
+stream_1/stream = ExtResource("5_de24s")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Fruit" type="RigidBody2D" parent="."]
+position = Vector2(207, 72)
+collision_layer = 8
+collision_mask = 9
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 16
+script = ExtResource("1_nsual")
+hues = Array[Color]([Color(0.854902, 0.160784, 0.109804, 1), Color(0.960784, 0.498039, 0.0901961, 1), Color(0.996078, 0.882353, 0.00392157, 1), Color(0.478431, 0.756863, 0.262745, 1), Color(0, 0.447059, 0.807843, 1), Color(0.572549, 0.152941, 0.560784, 1)])
+glow_material = SubResource("ShaderMaterial_a0fue")
+throw_strength = 100.0
+food_points = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fruit"]
+shape = SubResource("CircleShape2D_3h4lt")
+
+[node name="Sprite2D" type="Sprite2D" parent="Fruit"]
+modulate = Color(0.747001, 0.660343, 0.550301, 1)
+texture_filter = 3
+position = Vector2(1, 1)
+texture = SubResource("AtlasTexture_q54vd")
+
+[node name="Cut" type="AudioStreamPlayer2D" parent="Fruit"]
+stream = SubResource("AudioStreamRandomizer_iemro")
+
+[connection signal="body_entered" from="Fruit" to="Fruit" method="_on_body_entered"]
+[connection signal="cut" from="Fruit" to="Fruit/Cut" method="play"]
