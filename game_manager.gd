@@ -15,7 +15,8 @@ func _init():
 	cycle_timer = Timer.new()
 	cycle_timer.autostart = true
 	cycle_timer.one_shot = false
-	cycle_timer.wait_time = 180.0
+	cycle_timer.wait_time = 120.0
+	cycle_timer.timeout.connect(rain)
 
 func _ready():
 	start()
@@ -38,6 +39,10 @@ func start():
 	add_child(cycle_timer)
 
 func spawn_player():
+	get_tree().call_group(&"Player", &"queue_free")
+	
+	await get_tree().process_frame
+	
 	const PLAYER := preload("res://player/player.tscn")
 	var s := get_tree().current_scene
 	
@@ -52,14 +57,33 @@ func spawn_ui():
 	const UI := preload("res://ui/ui.tscn")
 	get_tree().current_scene.add_child(UI.instantiate())
 
+signal cycle()
 func next_cycle():
-	profile.current_food -= 4
+	
+	set_player_spawn()
+	
 	world_profile.all_cycle(get_tree())
 	
 	#restart the timer
 	cycle_timer.stop()
-	cycle_timer.wait_time = randf_range(150.0, 210.0)
+	cycle_timer.wait_time = randf_range(100.0, 200.0)
 	cycle_timer.start.call_deferred()
+	
+	spawn_player()
+	
+	cycle.emit()
+
+signal rain_started()
+func rain():
+	rain_started.emit()
+
+func set_player_spawn():
+	var player := get_tree().get_first_node_in_group(&"Player")
+	var spawn := get_tree().get_first_node_in_group(&"PlayerSpawn")
+	
+	spawn.global_position = player.global_position
+	if player.is_on_floor():
+		spawn.global_position += player.get_floor_normal() * 10.0
 
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("editor") and event is InputEventKey and event.is_pressed():
@@ -67,3 +91,19 @@ func _input(event: InputEvent) -> void:
 			profile.current_food = profile.max_food
 		elif event.keycode == KEY_2:
 			next_cycle()
+		elif event.keycode == KEY_3:
+			get_tree().call_group(
+				&"Player", &"set_deferred", &"global_position", 
+				get_tree().get_first_node_in_group(&"Shelter").global_position
+			)
+		elif event.keycode == KEY_4:
+			set_player_spawn()
+			spawn_player()
+		elif event.keycode == KEY_5:
+			var camera := get_viewport().get_camera_2d()
+			var player := get_tree().get_first_node_in_group(&"Player")
+			if player.is_ancestor_of(camera):
+				camera.reparent(get_tree().current_scene)
+			else:
+				camera.reparent(player)
+				camera.position = Vector2.ZERO

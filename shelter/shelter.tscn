@@ -227,3 +227,4 @@ stream = SubResource("AudioStreamRandomizer_jevl1")
 volume_db = -6.651
 
 [node name="Ascension" parent="." instance=ExtResource("4_wtw57")]
+visible = false

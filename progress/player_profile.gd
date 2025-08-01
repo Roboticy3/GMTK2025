@@ -20,6 +20,8 @@ signal current_food_changed(to:int)
 		current_food = clampi(new_current_food, 0, max_food)
 		current_food_changed.emit(current_food)
 
+@export var current_food_at_cycle := 1
+
 @export var max_karma := 5
 
 signal current_karma_changed(to:int)

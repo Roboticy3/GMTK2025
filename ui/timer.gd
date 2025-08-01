@@ -1,11 +1,17 @@
 extends Node
 
-@export var radius := 16
+@export var radii:PackedFloat32Array = [
+	16.0, 21.0, 24.0, 24.0, 24.0, 24.0
+]
 @export var sprite_frames:SpriteFrames
 @export var pip_seconds := 15.0
 
 func _ready() -> void:
 	build_pips()
+	GameManager.cycle.connect(func ():
+		set_process(false)
+		build_pips.call_deferred()
+	)
 
 var pips:Array[AnimatedSprite2D]
 func build_pips():
@@ -18,11 +24,11 @@ func build_pips():
 	for i in pip_count:
 		var p := AnimatedSprite2D.new()
 		p.sprite_frames = sprite_frames
-		p.position = Vector2.UP * radius
+		p.position = Vector2.UP * radii[GameManager.profile.current_karma]
 		var c := Node2D.new()
 		
 		var c_tween := c.create_tween()
-		c_tween.tween_property(c, "rotation", -2.0 * PI * float(i - 1) / float(pip_count), 1.0)
+		c_tween.tween_property(c, "rotation", -2.0 * PI * float(i + 1) / float(pip_count), 1.0)
 		
 		c.add_child(p)
 		add_child(c)
@@ -31,7 +37,7 @@ func build_pips():
 		
 		p.global_scale /= p.global_scale
 	
-	update_pips()
+	set_process(true)
 
 var empty_point:int = 0
 func update_pips():
@@ -42,9 +48,13 @@ func update_pips():
 	
 	if new_empty_point < empty_point:
 		for i in range(new_empty_point, empty_point):
+			if i >= pips.size():
+				break
 			pips[i].play("empty")
 	else:
 		for i in range(empty_point, new_empty_point):
+			if i >= pips.size():
+				break
 			pips[i].play("fill")
 	empty_point = new_empty_point
 

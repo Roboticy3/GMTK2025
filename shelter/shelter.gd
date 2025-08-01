@@ -12,7 +12,7 @@ signal success()
 signal fail()
 func _on_body_entered(body:Node):
 	print(body)
-	if body.is_in_group("Player"):
+	if body.is_in_group(&"Player"):
 		
 		if profile.current_food >= profile.food_needed:
 			captive = body

@@ -44,6 +44,10 @@ func rebuild_pips():
 
 signal pip_filled(i:int)
 func update_pips(new_food_level:int):
+	
+	if food_level == new_food_level:
+		return
+	
 	if food_level < new_food_level:
 		for i in range(food_level, new_food_level, 1):
 			if i < pips.size():

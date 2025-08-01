@@ -47,6 +47,7 @@ streams_count = 1
 stream_0/stream = ExtResource("5_tf0e0")
 
 [node name="Ui" type="CanvasLayer"]
+layer = 2
 
 [node name="StatusBar" type="Control" parent="."]
 texture_filter = 1
@@ -72,7 +73,7 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.611765)
 
 [node name="KarmaSymbol" type="Sprite2D" parent="StatusBar"]
-position = Vector2(32, 43.186)
+position = Vector2(43.186, 43.186)
 texture = SubResource("AtlasTexture_bo1jx")
 
 [node name="KarmaPip" type="Sprite2D" parent="StatusBar"]
@@ -83,13 +84,14 @@ script = ExtResource("3_bo1jx")
 atlas = SubResource("AtlasTexture_bo1jx")
 
 [node name="Timer" type="Node2D" parent="StatusBar"]
-position = Vector2(32.1597, 41.9475)
+position = Vector2(43.186, 41.9475)
 scale = Vector2(1.39825, 1.39825)
 script = ExtResource("4_bo1jx")
 sprite_frames = SubResource("SpriteFrames_bi8hs")
+pip_seconds = 10.0
 
 [node name="Food" type="Node2D" parent="StatusBar" node_paths=PackedStringArray("bar")]
-position = Vector2(88, 42.186)
+position = Vector2(100.584, 42.186)
 script = ExtResource("3_wl5ax")
 slot_animations = ExtResource("5_obcwv")
 bar = NodePath("Bar")
