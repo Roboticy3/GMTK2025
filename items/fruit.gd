@@ -1,0 +1,20 @@
+extends Item
+
+@export var hues:Array[Color] = [
+	Color("#DA291C"),
+	Color("#F57F17"),
+	Color("#FEE101"),
+	Color("#7AC143"),
+	Color("#0072CE"),
+	Color("#92278F"),
+]
+
+func _ready():
+	var rng := RandomNumberGenerator.new()
+	modulate = hues[rng.randi_range(0, 5)]
+
+signal cut()
+func _on_body_entered(body: Node) -> void:
+	print(body)
+	if body is Item and body.linear_velocity.length() > 100.0:
+		cut.emit()

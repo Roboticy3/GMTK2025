@@ -1,0 +1,296 @@
+[gd_scene load_steps=13 format=3 uid="uid://b4lnucj3d4ql1"]
+
+[ext_resource type="Texture2D" uid="uid://beurerfmaatq7" path="res://sheets/grain1.png" id="1_iht00"]
+[ext_resource type="Script" uid="uid://cqp3o3l4roolw" path="res://shelter/shelter.gd" id="1_sfjse"]
+[ext_resource type="AudioStream" uid="uid://c0px3y3tlcs4e" path="res://aud/shelter_close.wav" id="3_rfiox"]
+[ext_resource type="PackedScene" uid="uid://b527bw2spdmmk" path="res://ui/ascension.tscn" id="4_wtw57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgxy5"]
+size = Vector2(72, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rfiox"]
+atlas = ExtResource("1_iht00")
+region = Rect2(48, 176, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfjse"]
+size = Vector2(32, 32)
+
+[sub_resource type="Animation" id="Animation_sfjse"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Close:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Open:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ascension/Control:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ascension/Control/Ascension:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ascension/Control/Ascension/TextureRect:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iht00"]
+resource_name = "close"
+length = 20.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.03333, 3.76667, 16.5852, 17.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(32, -64), Vector2(0, -32), Vector2(0, -32), Vector2(32, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.03333, 3.76667, 16.5852, 17.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -1.57079, -1.57079, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Close:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Ascension/Control:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.63333, 6.63, 14.674, 17.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Ascension/Control/Ascension:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(8.49033, 9.52095),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Ascension/Control/Ascension/TextureRect:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(11.5, 13.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Ascension")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(9.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"Success"],
+"method": &"change_karma"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_rfiox"]
+resource_name = "open"
+length = 50.0
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("StaticBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -32), Vector2(32, -64)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("StaticBody2D:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-1.5708, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Open:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.11),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rfiox"]
+_data = {
+&"RESET": SubResource("Animation_sfjse"),
+&"close": SubResource("Animation_iht00"),
+&"open": SubResource("Animation_rfiox")
+}
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_d322i"]
+random_pitch = 1.24
+streams_count = 1
+stream_0/stream = ExtResource("3_rfiox")
+
+[node name="Shelter" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_sfjse")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_sgxy5")
+debug_color = Color(0.656106, 0.516712, 0, 0.42)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(32, -64)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+modulate = Color(0.092397, 0.0923971, 0.0923971, 1)
+texture_filter = 1
+texture = SubResource("AtlasTexture_rfiox")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_sfjse")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_rfiox")
+}
+autoplay = "RESET"
+
+[node name="Close" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_d322i")
+
+[node name="Open" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_d322i")
+
+[node name="Ascension" parent="." instance=ExtResource("4_wtw57")]
+
+[node name="Control" parent="Ascension" index="0"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Control" parent="Ascension/Control/Ascension" index="0"]
+anchors_preset = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 244.0
+offset_bottom = 648.0
+
+[node name="TextureRect" parent="Ascension/Control/Ascension" index="2"]
+modulate = Color(1, 1, 1, 1)
+
+[editable path="Ascension"]

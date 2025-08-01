@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://duoixavc02teg"]
+
+[ext_resource type="Script" uid="uid://cwvgjqrq31d4e" path="res://player/player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://b6ypu8wjikpld" path="res://icon.svg" id="2_i3pqv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uh7m"]
+radius = 11.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_onrkg")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.225, 0.225)
+texture = ExtResource("2_i3pqv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8uh7m")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 10000
+limit_bottom = 10000
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.5
+drag_right_margin = 0.5
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="TileMapLayerDetector" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayerDetector"]
+shape = SubResource("CircleShape2D_8uh7m")
+
+[connection signal="body_entered" from="TileMapLayerDetector" to="." method="_on_tile_map_layer_detector_body_entered"]
+[connection signal="body_exited" from="TileMapLayerDetector" to="." method="_on_tile_map_layer_detector_body_exited"]

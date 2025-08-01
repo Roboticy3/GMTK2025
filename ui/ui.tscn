@@ -1,0 +1,146 @@
+[gd_scene load_steps=20 format=3 uid="uid://do6t17wivmhgt"]
+
+[ext_resource type="Texture2D" uid="uid://bahp8rm617c33" path="res://sheets/pip_collect.png" id="1_wl5ax"]
+[ext_resource type="Texture2D" uid="uid://blp8moibl8x5j" path="res://sheets/ascension.png" id="2_obcwv"]
+[ext_resource type="Texture2D" uid="uid://cqeroyskhuspw" path="res://sheets/pip_big.png" id="2_vkava"]
+[ext_resource type="Script" uid="uid://btmoshul0s7gs" path="res://shelter/karma_pip.gd" id="3_bo1jx"]
+[ext_resource type="Script" uid="uid://cphrrcbh3k1cr" path="res://ui/food.gd" id="3_wl5ax"]
+[ext_resource type="Texture2D" uid="uid://c0maru6vmlwhn" path="res://sheets/pip_small.png" id="4_vkava"]
+[ext_resource type="AudioStream" uid="uid://cp7s0lvtvtig8" path="res://aud/confirm.wav" id="5_tf0e0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bo1jx"]
+atlas = ExtResource("2_obcwv")
+region = Rect2(320, 0, 64, 0)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tf0e0"]
+atlas = ExtResource("4_vkava")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vkava"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hrmpd"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7jpl"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_os0ka"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diyc5"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mf2ns"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju45i"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74toj"]
+atlas = ExtResource("1_wl5ax")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_obcwv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tf0e0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vkava")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hrmpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7jpl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_os0ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diyc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mf2ns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju45i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74toj")
+}],
+"loop": false,
+"name": &"fill",
+"speed": 10.0
+}]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_obcwv"]
+streams_count = 1
+stream_0/stream = ExtResource("5_tf0e0")
+
+[node name="Ui" type="CanvasLayer"]
+
+[node name="StatusBar" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = -62.0
+offset_right = 588.0
+offset_bottom = 9.0
+grow_vertical = 0
+scale = Vector2(0.71518, 0.71518)
+
+[node name="ColorRect" type="ColorRect" parent="StatusBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.099
+anchor_right = 0.706
+anchor_bottom = 1.0
+offset_top = 0.0290003
+offset_right = -0.186005
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.611765)
+
+[node name="KarmaPip" type="Sprite2D" parent="StatusBar"]
+position = Vector2(32, 32)
+texture = ExtResource("2_vkava")
+script = ExtResource("3_bo1jx")
+atlas = SubResource("AtlasTexture_bo1jx")
+
+[node name="KarmaSymbol" type="Sprite2D" parent="StatusBar/KarmaPip"]
+texture = SubResource("AtlasTexture_bo1jx")
+
+[node name="Food" type="Node2D" parent="StatusBar" node_paths=PackedStringArray("bar")]
+position = Vector2(88, 31)
+script = ExtResource("3_wl5ax")
+slot_animations = SubResource("SpriteFrames_obcwv")
+bar = NodePath("Bar")
+
+[node name="Bar" type="Polygon2D" parent="StatusBar/Food"]
+scale = Vector2(0.641975, 1.76667)
+polygon = PackedVector2Array(-5, 15, -4, -15, 4, -15, 4, 15)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_obcwv")
+volume_db = -5.333
+bus = &"SFX"
+
+[connection signal="pip_filled" from="StatusBar/Food" to="AudioStreamPlayer" method="play" unbinds=1]

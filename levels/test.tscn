@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://nrfewe1hafie"]
+
+[ext_resource type="Script" uid="uid://nh6bkvku854f" path="res://debug_tools/scripts/node_readout.gd" id="1_72lju"]
+
+[node name="Test" type="Node2D"]
+texture_filter = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+script = ExtResource("1_72lju")
+prop_list = Array[StringName]([&"name", &"touching_rope_type", &"current_tile_map_cell", &"current_tile_map_layer", &"climbing_tunnel", &"facing", &"tunnel_boosting", &"walking", &"turning", &"jumping", &"falling", &"MotionTree/current_animation"])
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/normal_font_size = 12
+fit_content = true
+script = ExtResource("1_72lju")
+prop_list = Array[StringName]([&"current_animation", &"parameters/conditions/walking", &"parameters/conditions/idle", &"parameters/walking/blend_position"])

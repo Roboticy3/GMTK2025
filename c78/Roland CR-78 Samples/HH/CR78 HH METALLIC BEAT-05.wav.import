@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dhw853x2jlvqy"
+path="res://.godot/imported/CR78 HH METALLIC BEAT-05.wav-7b46a33d5004dc6b081ac39a884d9f87.sample"
+
+[deps]
+
+source_file="res://c78/Roland CR-78 Samples/HH/CR78 HH METALLIC BEAT-05.wav"
+dest_files=["res://.godot/imported/CR78 HH METALLIC BEAT-05.wav-7b46a33d5004dc6b081ac39a884d9f87.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

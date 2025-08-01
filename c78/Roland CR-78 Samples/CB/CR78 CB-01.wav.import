@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c16lexgnbq3uh"
+path="res://.godot/imported/CR78 CB-01.wav-5fb7d0b9eb4020c3980949b84e8d8390.sample"
+
+[deps]
+
+source_file="res://c78/Roland CR-78 Samples/CB/CR78 CB-01.wav"
+dest_files=["res://.godot/imported/CR78 CB-01.wav-5fb7d0b9eb4020c3980949b84e8d8390.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

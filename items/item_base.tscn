@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bc6pf1o7wqfid"]
+
+[ext_resource type="Script" uid="uid://5lnacdrowo2r" path="res://items/item.gd" id="1_5ufc5"]
+[ext_resource type="Shader" uid="uid://dxqqxjwtaf370" path="res://items/item_glow.gdshader" id="1_8ndl7"]
+[ext_resource type="Texture2D" uid="uid://c4p5ired7j4du" path="res://sheets/rock.png" id="1_et2oy"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0fue"]
+shader = ExtResource("1_8ndl7")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ndl7"]
+size = Vector2(10, 10)
+
+[node name="ItemBase" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 9
+continuous_cd = 1
+script = ExtResource("1_5ufc5")
+glow_material = SubResource("ShaderMaterial_a0fue")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8ndl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.747001, 0.660343, 0.550301, 1)
+texture_filter = 3
+position = Vector2(1, 1)
+texture = ExtResource("1_et2oy")
