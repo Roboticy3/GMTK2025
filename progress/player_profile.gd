@@ -15,7 +15,7 @@ signal max_food_changed(to:int)
 		max_food_changed.emit(new_max_food)
 
 signal current_food_changed(to:int)
-@export var current_food := 4 :
+@export var current_food := 1 :
 	set(new_current_food):
 		current_food = clampi(new_current_food, 0, max_food)
 		current_food_changed.emit(current_food)

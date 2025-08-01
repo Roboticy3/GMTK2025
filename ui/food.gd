@@ -44,10 +44,16 @@ func rebuild_pips():
 
 signal pip_filled(i:int)
 func update_pips(new_food_level:int):
-	for i in range(food_level, new_food_level, 1):
-		if i < pips.size():
-			pips[i].play("fill")
-			pip_filled.emit(i)
+	if food_level < new_food_level:
+		for i in range(food_level, new_food_level, 1):
+			if i < pips.size():
+				pips[i].play("fill")
+				pip_filled.emit(i)
+	elif food_level > new_food_level:
+		for i in range(new_food_level, food_level, 1):
+			if i < pips.size():
+				pips[i].play("empty")
+	
 	food_level = new_food_level
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

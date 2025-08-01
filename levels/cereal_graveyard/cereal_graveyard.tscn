@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://ba0xjwicgpnic"]
+[gd_scene load_steps=25 format=4 uid="uid://ba0xjwicgpnic"]
 
 [ext_resource type="Texture2D" uid="uid://beurerfmaatq7" path="res://sheets/grain1.png" id="1_f1x2s"]
 [ext_resource type="Texture2D" uid="uid://dscmetuscb4c8" path="res://sheets/backdrop.png" id="1_sm8lb"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bc6pf1o7wqfid" path="res://items/item_base.tscn" id="4_rww7g"]
 [ext_resource type="PackedScene" uid="uid://dx7sq0hvymac3" path="res://items/fruit_branch.tscn" id="5_52c0i"]
 [ext_resource type="Script" uid="uid://cgfgts8boj187" path="res://make_sans.gd" id="5_sm8lb"]
+[ext_resource type="SpriteFrames" uid="uid://b0ipc22beuenp" path="res://sheets/pipframes.tres" id="8_00lhv"]
 [ext_resource type="PackedScene" uid="uid://b4lnucj3d4ql1" path="res://shelter/shelter.tscn" id="8_6b1mj"]
 [ext_resource type="AudioStream" uid="uid://cdr8foa1yb4uc" path="res://aud/drone.wav" id="9_hkyex"]
 [ext_resource type="Script" uid="uid://bv422x301me8x" path="res://levels/scripts/random_timed_player.gd" id="10_3316q"]
@@ -955,26 +956,18 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAFAAYAAAABAAEAAAAGAAYAAAACAAEAAAAHAAY
 tile_set = SubResource("TileSet_52c0i")
 
 [node name="PlayerSpawn" type="Node2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(2790, 635)
+position = Vector2(197, 220)
 
 [node name="ItemBase" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
-position = Vector2(24, -23)
+position = Vector2(0, -13)
 linear_velocity = Vector2(300, 300)
 
 [node name="ItemBase2" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
-position = Vector2(14, -24)
+position = Vector2(-10, -14)
 linear_velocity = Vector2(300, 300)
 
 [node name="ItemBase3" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
-position = Vector2(6, -31)
-linear_velocity = Vector2(300, 300)
-
-[node name="ItemBase4" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
-position = Vector2(-2, -38)
-linear_velocity = Vector2(300, 300)
-
-[node name="ItemBase5" parent="PlayerSpawn" instance=ExtResource("4_rww7g")]
-position = Vector2(15, -36)
+position = Vector2(-18, -21)
 linear_velocity = Vector2(300, 300)
 
 [node name="Start" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape")]
@@ -1091,8 +1084,44 @@ position = Vector2(2340.5, 568.5)
 shape = SubResource("RectangleShape2D_6b1mj")
 debug_color = Color(0, 0.6, 0.156863, 0.14902)
 
-[node name="Shelter2" parent="Shelter" instance=ExtResource("8_6b1mj")]
+[node name="ShelterArea" parent="Shelter" instance=ExtResource("8_6b1mj")]
 position = Vector2(2421, 462)
+
+[node name="FoodTutorial" type="Node2D" parent="Shelter"]
+z_index = 1
+position = Vector2(2325, 451)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Shelter/FoodTutorial"]
+position = Vector2(50, 51)
+sprite_frames = ExtResource("8_00lhv")
+animation = &"empty"
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Shelter/FoodTutorial"]
+position = Vector2(79, 51)
+sprite_frames = ExtResource("8_00lhv")
+animation = &"empty"
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="Shelter/FoodTutorial"]
+position = Vector2(110, 51)
+sprite_frames = ExtResource("8_00lhv")
+animation = &"empty"
+
+[node name="AnimatedSprite2D4" type="AnimatedSprite2D" parent="Shelter/FoodTutorial"]
+position = Vector2(140, 51)
+sprite_frames = ExtResource("8_00lhv")
+animation = &"empty"
+
+[node name="AnimatedSprite2D5" type="AnimatedSprite2D" parent="Shelter/FoodTutorial"]
+position = Vector2(194, 51)
+sprite_frames = ExtResource("8_00lhv")
+animation = &"empty"
+frame = 11
+frame_progress = 1.0
+
+[node name="Bar" type="Polygon2D" parent="Shelter/FoodTutorial"]
+position = Vector2(165, 48)
+scale = Vector2(0.641975, 1.76667)
+polygon = PackedVector2Array(-5, 15, -4, -15, 4, -15, 4, 15)
 
 [node name="LevelTransition" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape")]
 position = Vector2(737, 0)

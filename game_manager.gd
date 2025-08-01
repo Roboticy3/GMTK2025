@@ -10,6 +10,7 @@ var profile := PlayerProfile.new()
 
 func _ready():
 	start()
+	pass
 
 func start():
 	if profile.story_state == 0:
@@ -39,3 +40,8 @@ func spawn_player():
 func spawn_ui():
 	const UI := preload("res://ui/ui.tscn")
 	get_tree().current_scene.add_child(UI.instantiate())
+
+func _input(event: InputEvent) -> void:
+	if OS.has_feature("editor"):
+		if Input.is_key_pressed(KEY_1):
+			profile.current_food = profile.max_food

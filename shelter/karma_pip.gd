@@ -1,4 +1,4 @@
-extends Sprite2D
+extends Node
 
 @onready var profile := GameManager.profile
 
@@ -9,4 +9,6 @@ func _ready() -> void:
 	profile.current_karma_changed.connect(_on_karma_changed)
 
 func _on_karma_changed(k:int) -> void:
-	atlas.region.position.x = 64 * (profile.max_karma - k)
+	get_tree().create_timer(8.0).timeout.connect(func ():
+		atlas.region.position.x = 64 * (profile.max_karma - k)
+	)
