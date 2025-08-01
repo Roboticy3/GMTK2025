@@ -31,6 +31,9 @@ PlayerSpawn=""
 Player=""
 Entity=""
 Pip=""
+FruitBranch=""
+Fruit=""
+Loose="Items cleaned up on cycle"
 
 [input]
 

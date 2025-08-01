@@ -7,6 +7,7 @@ var ui:PackedScene
 
 #replace with loader
 var profile := PlayerProfile.new()
+var world_profile := WorldProfile.new()
 
 func _ready():
 	start()
@@ -25,6 +26,7 @@ func start():
 		
 		spawn_player()
 		spawn_ui()
+		world_profile.fruit_reload(get_tree(), &"FruitBranch")
 
 func spawn_player():
 	const PLAYER := preload("res://player/player.tscn")
@@ -42,6 +44,8 @@ func spawn_ui():
 	get_tree().current_scene.add_child(UI.instantiate())
 
 func _input(event: InputEvent) -> void:
-	if OS.has_feature("editor"):
-		if Input.is_key_pressed(KEY_1):
+	if OS.has_feature("editor") and event is InputEventKey and event.is_pressed():
+		if event.keycode == KEY_1:
 			profile.current_food = profile.max_food
+		elif event.keycode == KEY_2:
+			world_profile.all_cycle(get_tree())

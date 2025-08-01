@@ -6,6 +6,7 @@ var captive:CharacterBody2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	add_to_group("Shelter")
 
 signal success()
 signal fail()

@@ -1,6 +1,7 @@
 extends Node
 
 @onready var profile := GameManager.profile
+@onready var world_profile := GameManager.world_profile
 
 @export var karma_column:Control
 
@@ -33,4 +34,5 @@ func karma_to_position(k:int) -> Vector2:
 
 func next_cycle():
 	profile.current_food -= 4
+	world_profile.all_cycle(get_tree())
 	

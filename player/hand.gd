@@ -65,6 +65,9 @@ func grab(item:Item):
 	#tell item its being grabbed
 	item.grabbed.emit()
 	
+	#mark for cleanup on cycle
+	item.remove_from_group(&"Loose")
+	
 	held_item = nearest_item
 	
 	#remove glow
@@ -87,6 +90,9 @@ func drop(item:Item):
 	
 	held_item = null
 	
+	#mark for cleanup on cycle
+	item.add_to_group(&"Loose")
+	
 	#give back to scene
 	item.reparent(get_tree().current_scene)
 	
@@ -107,6 +113,8 @@ func throw(item:Item):
 	
 	#yeet
 	item.apply_central_impulse(last_horizontal_facing * item.throw_strength)
+	
+	item._on_throw()
 	
 	$Throw.play()
 

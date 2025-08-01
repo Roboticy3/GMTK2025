@@ -23,6 +23,6 @@ node_a = NodePath("..")
 
 [node name="Rope" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, 20)
 scale = Vector2(1, 2.44)
 texture = SubResource("AtlasTexture_rfhe2")
+offset = Vector2(0, 8.19672)

@@ -193,7 +193,7 @@ streams_count = 1
 stream_0/stream = ExtResource("4_ovd5g")
 
 [node name="Shelter" type="Area2D"]
-collision_mask = 2
+collision_mask = 10
 script = ExtResource("1_sfjse")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

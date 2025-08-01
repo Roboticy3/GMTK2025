@@ -13,7 +13,7 @@ size = Vector2(4, 4)
 [node name="ItemBase" type="RigidBody2D"]
 collision_layer = 8
 collision_mask = 9
-continuous_cd = 1
+continuous_cd = 2
 script = ExtResource("1_5ufc5")
 glow_material = SubResource("ShaderMaterial_a0fue")
 
