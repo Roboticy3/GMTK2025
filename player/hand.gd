@@ -75,7 +75,7 @@ func grab(item:Item):
 	
 	#move the item closer to indicate it has been picked up
 	var d := distance_to_item(item)
-	item.global_position = global_position + (item.global_position - global_position).normalized() * d * 0.5
+	item.position = Vector2.from_angle(randf_range(0.0, 2 * PI)) * 6.0
 	
 	#pin to the hand
 	node_b = "../" + item.name
