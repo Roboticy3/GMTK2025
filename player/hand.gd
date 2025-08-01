@@ -70,6 +70,8 @@ func grab(item:Item):
 	#remove glow
 	item.set_glow(false)
 	
+	await get_tree().process_frame
+	
 	item.reparent(get_tree().root)
 	
 	#move the item closer to indicate it has been picked up

@@ -1,4 +1,4 @@
-extends Item
+class_name Fruit extends Item
 
 @export var hues:Array[Color] = [
 	Color("#DA291C"),

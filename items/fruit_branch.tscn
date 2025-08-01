@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dx7sq0hvymac3"]
+[gd_scene load_steps=6 format=3 uid="uid://dx7sq0hvymac3"]
 
 [ext_resource type="Texture2D" uid="uid://beurerfmaatq7" path="res://sheets/grain1.png" id="1_8exvl"]
+[ext_resource type="Script" uid="uid://cpqixjbpnbj6y" path="res://items/fruit_branch.gd" id="1_8vw7a"]
 [ext_resource type="PackedScene" uid="uid://qjbrjsigoiw5" path="res://items/fruit.tscn" id="2_rfhe2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eqf66"]
@@ -10,6 +11,8 @@ atlas = ExtResource("1_8exvl")
 region = Rect2(0, 0, 16, 16)
 
 [node name="FruitBranch" type="StaticBody2D"]
+script = ExtResource("1_8vw7a")
+fruit = ExtResource("2_rfhe2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eqf66")
@@ -17,20 +20,9 @@ disabled = true
 
 [node name="PinJoint2D" type="PinJoint2D" parent="."]
 node_a = NodePath("..")
-node_b = NodePath("../ItemBase")
 
-[node name="ItemBase" parent="." instance=ExtResource("2_rfhe2")]
-position = Vector2(0, 40)
-collision_mask = 3
-continuous_cd = 0
-
-[node name="Sprite2D2" type="Sprite2D" parent="ItemBase"]
+[node name="Rope" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -20)
+position = Vector2(0, 20)
 scale = Vector2(1, 2.44)
 texture = SubResource("AtlasTexture_rfhe2")
-
-[connection signal="cut" from="ItemBase" to="PinJoint2D" method="queue_free"]
-[connection signal="cut" from="ItemBase" to="ItemBase/Sprite2D2" method="free"]
-[connection signal="grabbed" from="ItemBase" to="ItemBase/Sprite2D2" method="free"]
-[connection signal="grabbed" from="ItemBase" to="PinJoint2D" method="set_node_b" binds= [NodePath("")]]

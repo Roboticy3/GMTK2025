@@ -15,7 +15,7 @@
 radius = 6.08276
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g1dw6"]
-radius = 15.0333
+radius = 20.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rkbax"]
 animation = &"idle"

@@ -7,7 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://b6xg06soyhwq1" path="res://c78/Roland CR-78 Samples/LB/CR78 LB-01.wav" id="5_cfyrv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3h4lt"]
-radius = 8.0
+radius = 3.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q54vd"]
 atlas = ExtResource("2_a05hs")
