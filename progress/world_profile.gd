@@ -29,8 +29,8 @@ func loose_reload(tree:SceneTree, loose_group:StringName):
 		tree.current_scene.add_child(l)
 #endregion
 
-@export var fruit_data := PickableProfile.new()
-@export var spooear_data := PickableProfile.new()
+@export var fruit_data := preload("res://items/fruit/fruit_profile.tres") as PickableProfile
+@export var spooear_data := preload("res://items/spooear/spooear_profile.tres") as PickableProfile
 
 func all_cycle_fail(tree:SceneTree):
 	loose_reload(tree, &"Loose")

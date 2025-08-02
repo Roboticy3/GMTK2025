@@ -101,6 +101,7 @@ func spawn_player():
 	var current_player = get_current_player()
 	if is_instance_valid(current_player):
 		current_player.get_node("Hand").drop_held()
+		current_player.queue_free()
 	
 	await get_tree().process_frame
 	
