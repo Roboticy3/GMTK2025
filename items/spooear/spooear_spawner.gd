@@ -14,6 +14,10 @@ signal cut()
 
 var spawned := false
 func spawn():
+	#only spawn spears at higher karma
+	if GameManager.profile.current_karma < 1:
+		return
+	
 	if spawned:
 		return
 	

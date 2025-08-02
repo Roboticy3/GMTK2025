@@ -1440,7 +1440,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAFAAYAAAABAAEAAAAGAAYAAAACAAEAAAAHAAY
 tile_set = SubResource("TileSet_52c0i")
 
 [node name="PlayerSpawn" type="CharacterBody2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(2152, 599)
+position = Vector2(271, 243)
 collision_layer = 0
 motion_mode = 1
 
@@ -1510,8 +1510,66 @@ position = Vector2(1836, 170)
 [node name="SpooearSpawner" parent="Spooears" instance=ExtResource("9_bxdqk")]
 position = Vector2(374, 267)
 
+[node name="SpooearSpawner3" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(390, 268)
+rotation = 0.328979
+
 [node name="SpooearSpawner2" parent="Spooears" instance=ExtResource("9_bxdqk")]
-position = Vector2(2039, 431)
+position = Vector2(2038, 431)
+rotation = 0.634371
+
+[node name="SpooearSpawner4" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2875, 589)
+
+[node name="SpooearSpawner5" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2285, 647)
+
+[node name="SpooearSpawner6" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2269, 645)
+
+[node name="SpooearSpawner7" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(857, 558)
+
+[node name="SpooearSpawner8" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(710, 254)
+
+[node name="SpooearSpawner9" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(1220, 361)
+
+[node name="SpooearSpawner10" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2436, 463)
+
+[node name="SpooearSpawner11" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(397, 267)
+
+[node name="SpooearSpawner12" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(413, 268)
+rotation = 0.328979
+
+[node name="SpooearSpawner13" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2061, 431)
+rotation = 0.634371
+
+[node name="SpooearSpawner14" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2898, 589)
+
+[node name="SpooearSpawner15" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2308, 647)
+
+[node name="SpooearSpawner16" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2292, 645)
+
+[node name="SpooearSpawner17" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(880, 558)
+
+[node name="SpooearSpawner18" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(733, 254)
+
+[node name="SpooearSpawner19" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(1243, 361)
+
+[node name="SpooearSpawner20" parent="Spooears" instance=ExtResource("9_bxdqk")]
+position = Vector2(2459, 463)
 
 [node name="Start" type="Area2D" parent="." node_paths=PackedStringArray("collision_shape")]
 collision_layer = 0

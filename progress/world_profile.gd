@@ -34,17 +34,17 @@ func loose_reload(tree:SceneTree, loose_group:StringName):
 
 func all_cycle_fail(tree:SceneTree):
 	loose_reload(tree, &"Loose")
-	fruit_data.spawn_cycle_fail(tree, &"FruitBranch", &"Fruit")
-	spooear_data.spawn_cycle_fail(tree, &"SpooearSpawner", &"Spooear")
+	fruit_data.spawn_cycle_fail(tree, &"FruitBranch")
+	spooear_data.spawn_cycle_fail(tree, &"SpooearSpawner")
 
 func all_cycle(tree:SceneTree):
 	loose = []
 	loose_cycle(tree, &"Loose", &"Shelter")
 	loose_cycle(tree, &"SpearStuck", &"")
-	fruit_data.spawn_cycle(tree, &"FruitBranch", &"Fruit")
-	spooear_data.spawn_cycle(tree, &"SpooearSpawner", &"Spooear")
+	fruit_data.spawn_cycle(tree, &"FruitBranch")
+	spooear_data.spawn_cycle(tree, &"SpooearSpawner")
 
 func all_reload(tree:SceneTree):
 	loose_reload(tree, &"Loose")
-	fruit_data.spawn_reload(tree, &"FruitBranch")
-	spooear_data.spawn_reload(tree, &"SpooearSpawner")
+	fruit_data.spawn_cycle(tree, &"FruitBranch")
+	spooear_data.spawn_cycle(tree, &"SpooearSpawner")

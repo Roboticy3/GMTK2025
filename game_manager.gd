@@ -163,5 +163,9 @@ func _input(event: InputEvent) -> void:
 			else:
 				camera.reparent(player)
 				camera.position = Vector2.ZERO
+		elif event.keycode == KEY_6:
+			profile = PlayerProfile.new()
+			world_profile = WorldProfile.new()
+			save_profiles()
 
 #endregion

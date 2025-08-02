@@ -32,7 +32,7 @@ func _on_spawner_cut(spawner:NodePath) -> void:
 	spawners[spawner] = 1
 
 #called at the start of each cycle
-func spawn_cycle(tree:SceneTree, spawner_group:StringName, group:StringName) -> void:
+func spawn_cycle(tree:SceneTree, spawner_group:StringName) -> void:
 		
 	register_spawners(tree, spawner_group)
 	
@@ -51,7 +51,7 @@ func spawn_cycle(tree:SceneTree, spawner_group:StringName, group:StringName) -> 
 
 #Like spawn cycle, but respawns all age 1 (freshly collected) items instead of 
 #	random items, and does not update age counts
-func spawn_cycle_fail(tree:SceneTree, spawner_group:StringName, group:StringName) -> void:
+func spawn_cycle_fail(tree:SceneTree, spawner_group:StringName) -> void:
 	register_spawners(tree, spawner_group)
 	
 	for s in tree.get_nodes_in_group(spawner_group):
@@ -59,11 +59,3 @@ func spawn_cycle_fail(tree:SceneTree, spawner_group:StringName, group:StringName
 		if spawners.get(spawner) == 1:
 			s.spawn()
 			spawners[spawner] = 0
-
-#run on game load to register fruit spawneres
-func spawn_reload(tree:SceneTree, spawner_group:StringName) -> void:
-	register_spawners(tree, spawner_group)
-	for s in tree.get_nodes_in_group(spawner_group):
-		var spawner := s.get_path()
-		if spawners.get(spawner) == 0:
-			s.spawn()
