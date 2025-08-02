@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://ba0xjwicgpnic"]
+[gd_scene load_steps=58 format=4 uid="uid://ba0xjwicgpnic"]
 
 [ext_resource type="Texture2D" uid="uid://beurerfmaatq7" path="res://sheets/grain1.png" id="1_f1x2s"]
 [ext_resource type="Texture2D" uid="uid://dscmetuscb4c8" path="res://sheets/backdrop.png" id="1_sm8lb"]
@@ -21,6 +21,9 @@
 [ext_resource type="AudioStream" uid="uid://fhb7n7ngahts" path="res://aud/rain.wav" id="16_3riwx"]
 [ext_resource type="PackedScene" uid="uid://b527bw2spdmmk" path="res://ui/ascension.tscn" id="17_5spwc"]
 [ext_resource type="PackedScene" uid="uid://e4vfptasviht" path="res://karma_door/door.tscn" id="19_0ybcv"]
+[ext_resource type="Script" uid="uid://d31oya5cdho2f" path="res://settings/settings.gd" id="22_hnqjs"]
+[ext_resource type="Script" uid="uid://dunqibvaja15y" path="res://settings/volume_slider.gd" id="23_gr2xl"]
+[ext_resource type="Theme" uid="uid://em402toqr6om" path="res://settings/settings.tres" id="23_kjp48"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_25srk"]
 atlas = ExtResource("2_5no2y")
@@ -1846,6 +1849,7 @@ stream = ExtResource("16_3riwx")
 visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
 anchors_preset = 11
@@ -1866,3 +1870,60 @@ vertical_alignment = 2
 script = ExtResource("3_stv0q")
 prop_list = Array[StringName]([&"current_tile_map_layer", &"current_tile_map_cell", &"current_spoon_rope"])
 method_list = Array[StringName]([&"is_on_floor"])
+
+[node name="Settings" type="CanvasLayer" parent="."]
+script = ExtResource("22_hnqjs")
+
+[node name="Control" type="Control" parent="Settings"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_right = 158.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme = ExtResource("23_kjp48")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Box" type="VBoxContainer" parent="Settings/Control/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = -5
+
+[node name="Label" type="Label" parent="Settings/Control/MarginContainer/Box"]
+layout_mode = 2
+text = "Master Volume"
+
+[node name="HSlider" type="HSlider" parent="Settings/Control/MarginContainer/Box"]
+z_index = 2
+layout_mode = 2
+script = ExtResource("23_gr2xl")
+
+[node name="Label2" type="Label" parent="Settings/Control/MarginContainer/Box"]
+layout_mode = 2
+text = "Sound Effect Volume"
+
+[node name="HSlider2" type="HSlider" parent="Settings/Control/MarginContainer/Box"]
+layout_mode = 2
+script = ExtResource("23_gr2xl")
+bus = 1
+
+[node name="Label3" type="Label" parent="Settings/Control/MarginContainer/Box"]
+layout_mode = 2
+text = "Ambient Volume"
+
+[node name="HSlider3" type="HSlider" parent="Settings/Control/MarginContainer/Box"]
+layout_mode = 2
+script = ExtResource("23_gr2xl")
+bus = 2

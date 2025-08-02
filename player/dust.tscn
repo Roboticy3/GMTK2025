@@ -28,5 +28,6 @@ script = ExtResource("2_ckj8t")
 
 [node name="DustSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_jjf1e")
+bus = &"SFX"
 
 [connection signal="started" from="." to="DustSound" method="play"]

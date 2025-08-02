@@ -1,0 +1,31 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://em402toqr6om"]
+
+[ext_resource type="Texture2D" uid="uid://cqsg6us6ec4yc" path="res://sheets/john_cereal.png" id="1_cypte"]
+[ext_resource type="Texture2D" uid="uid://c6r3nnoqiu1es" path="res://sheets/john_cereal_grey.png" id="1_fdkeg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cypte"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pc4a5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_sr77r"]
+thickness = 2
+
+[sub_resource type="Gradient" id="Gradient_bc3oc"]
+offsets = PackedFloat32Array(0, 0.2, 0.31, 0.47, 0.68)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 0.596078, 1, 1, 1, 0, 1, 1, 1, 0.596078, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cypte"]
+gradient = SubResource("Gradient_bc3oc")
+fill = 1
+fill_from = Vector2(0.487805, 0.47561)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fdkeg"]
+texture = SubResource("GradientTexture2D_cypte")
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_fdkeg")
+HSlider/icons/grabber_highlight = ExtResource("1_cypte")
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_cypte")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_pc4a5")
+HSlider/styles/slider = SubResource("StyleBoxLine_sr77r")
+Panel/styles/panel = SubResource("StyleBoxTexture_fdkeg")
