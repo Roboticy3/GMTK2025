@@ -14,8 +14,14 @@ func change_karma(ending:StringName):
 	
 	ending_state = ending
 	match ending:
-		&"Success": profile.current_karma = profile.current_karma + 1
-		&"Fail": profile.current_karma = profile.current_karma + 0
+		&"Success": 
+			profile.current_karma = profile.current_karma + 1
+		&"Fail": 
+			#negate a fail if player is in shelter.
+			for s in get_tree().get_nodes_in_group(&"Shelter"):
+				if s.captive and s.captive.is_in_group(&"Player"):
+					return
+			profile.current_karma = profile.current_karma + 0
 
 	$AnimationPlayer.play("update_karma")
 
@@ -39,7 +45,10 @@ func next_cycle():
 		&"Success": 
 			GameManager.set_player_spawn()
 			profile.current_food -= 4
-		&"Fail": profile.current_food = profile.current_food_at_cycle
+			world_profile.all_cycle(get_tree())
+		&"Fail": 
+			profile.current_food = profile.current_food_at_cycle
+			world_profile.all_cycle_fail(get_tree())
 	
 	profile.current_food_at_cycle = profile.current_food
 	GameManager.next_cycle()

@@ -6,9 +6,14 @@ class_name Item extends RigidBody2D
 
 var stuck := false
 var flying := false
+var time_in_air := 0.0
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+
+func _physics_process(delta: float) -> void:
+	if flying:
+		time_in_air += delta
 
 func _on_body_entered(body:Node):
 	flying = false

@@ -60,11 +60,11 @@ func spawn_ui():
 signal cycle()
 func next_cycle():
 	
-	world_profile.all_cycle(get_tree())
+	
 	
 	#restart the timer
 	cycle_timer.stop()
-	cycle_timer.wait_time = randf_range(100.0, 200.0)
+	cycle_timer.wait_time = randf_range(80.0, 230.0)
 	cycle_timer.start.call_deferred()
 	
 	spawn_player()
