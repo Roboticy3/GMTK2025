@@ -39,8 +39,8 @@ func save_profiles():
 #region cycle
 var cycle_timer:Timer
 const START_CYCLE_TIME := 200.0
-const MAX_CYCLE_TIME := 230.0
-const MIN_CYCLE_TIME := 70.0
+const MAX_CYCLE_TIME := 280.0
+const MIN_CYCLE_TIME := 120.0
 
 func _init():
 	cycle_timer = Timer.new()
@@ -154,9 +154,12 @@ func profile_reset():
 
 func _input(event: InputEvent) -> void:
 	
-	if event is InputEventKey and event.is_pressed():
-		if event.keycode == KEY_DELETE:
-			profile_reset()
+	if event.is_action_pressed("delete"):
+		#spawn reset menu, and reset on confirm
+		var RESET_MENU := preload("res://settings/are_you_sure.tscn")
+		var r := RESET_MENU.instantiate()
+		get_tree().current_scene.add_child(r)
+		r.pipe.connect(profile_reset)
 	
 	if OS.has_feature("editor") and event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_1:

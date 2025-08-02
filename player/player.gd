@@ -79,6 +79,7 @@ func try_jump():
 			dust.emit()
 		jumping = true
 		velocity.y = JUMP_VELOCITY
+		time_in_air += COYOTE_TIME
 		
 		if !tunneling:
 			climbing_rope = false
@@ -243,9 +244,10 @@ func update_rope_type_spoon(axis):
 			spoon_rope = b
 	current_spoon_rope = spoon_rope
 
-func update_facing():
-	if !velocity.is_zero_approx():
-		facing = velocity.normalized().snapped(Vector2.ONE)
+func update_facing(axis):
+	var f_axis:Vector2 = axis * Vector2.RIGHT
+	if !f_axis.is_zero_approx():
+		facing = f_axis
 
 func update_idling():
 	idling = !jumping and !walking and !climbing_rope
@@ -267,6 +269,6 @@ func _physics_process(delta: float) -> void:
 	#update state
 	update_colliding_tile()
 	update_rope_type(axis)
-	update_facing()
+	update_facing(axis)
 	update_fall(delta)
 	update_idling()

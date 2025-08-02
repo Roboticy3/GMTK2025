@@ -84,7 +84,6 @@ position = Vector2(43.186, 41.9475)
 scale = Vector2(1.39825, 1.39825)
 script = ExtResource("4_bo1jx")
 sprite_frames = SubResource("SpriteFrames_bi8hs")
-pip_seconds = 10.0
 
 [node name="Food" type="Node2D" parent="StatusBar" node_paths=PackedStringArray("bar")]
 position = Vector2(100.584, 42.186)

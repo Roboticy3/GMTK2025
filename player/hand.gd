@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 		
 	
 	var is_eating:bool = player.controller.eat
-	if is_eating:
+	if is_eating and GameManager.profile.current_food < GameManager.profile.max_food:
 		eat_held()
 
 #region action
