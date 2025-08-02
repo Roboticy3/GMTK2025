@@ -60,6 +60,9 @@ func _physics_process(delta: float) -> void:
 #region action
 func grab(item:Item):
 	
+	if !is_instance_valid(item):
+		return
+	
 	if is_instance_valid(held_item):
 		drop(held_item)
 	
@@ -78,6 +81,9 @@ func grab(item:Item):
 	item.freeze = true
 	
 	await get_tree().process_frame
+	
+	if !is_instance_valid(item):
+		return
 	
 	item.reparent(self)
 	

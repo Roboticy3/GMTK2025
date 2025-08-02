@@ -54,11 +54,17 @@ func spawn_cycle(tree:SceneTree, spawner_group:StringName) -> void:
 func spawn_cycle_fail(tree:SceneTree, spawner_group:StringName) -> void:
 	register_spawners(tree, spawner_group)
 	
+	var rng := RandomNumberGenerator.new()
 	for s in tree.get_nodes_in_group(spawner_group):
 		var spawner := s.get_path()
 		if spawners.get(spawner) == 1:
-			s.spawn()
 			spawners[spawner] = 0
+			var p := get_spawner_probability(spawner)
+			var r := rng.randf_range(0.0, 1.0)
+			if r <= p:
+				s.spawn()
+			else:
+				spawners[spawner] = 1
 
 func spawn_deregister():
 	spawners = {}
