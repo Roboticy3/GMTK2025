@@ -1872,6 +1872,7 @@ prop_list = Array[StringName]([&"current_tile_map_layer", &"current_tile_map_cel
 method_list = Array[StringName]([&"is_on_floor"])
 
 [node name="Settings" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("22_hnqjs")
 
 [node name="Control" type="Control" parent="Settings"]

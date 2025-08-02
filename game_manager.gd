@@ -38,7 +38,7 @@ func save_profiles():
 
 #region cycle
 var cycle_timer:Timer
-const START_CYCLE_TIME := 10.0
+const START_CYCLE_TIME := 200.0
 const MAX_CYCLE_TIME := 230.0
 const MIN_CYCLE_TIME := 70.0
 
