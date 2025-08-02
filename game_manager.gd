@@ -74,6 +74,9 @@ func _ready():
 	pass
 
 func start():
+	
+	cycle_timer.stop()
+	cycle_timer.reparent(self)
 
 	const START := preload("res://levels/cereal_graveyard/cereal_graveyard.tscn")
 	var old_scene := get_tree().current_scene
@@ -94,7 +97,8 @@ func start():
 	if reset: world_profile.all_deregister()
 	world_profile.all_reload(get_tree())
 	
-	add_child(cycle_timer)
+	get_tree().current_scene.add_child(cycle_timer)
+	cycle_timer.start()
 
 #region spawnage
 

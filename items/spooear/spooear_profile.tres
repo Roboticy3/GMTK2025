@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_4e768")
 spawners = Dictionary[NodePath, int]({})
-age_probabilities = [0.15, 0.15, 0.15, 0.2, 0.2, 1.0]
+age_probabilities = [1.0, 0.01, 0.1, 1.0]
 metadata/_custom_type_script = "uid://uwu5h7oj401a"
