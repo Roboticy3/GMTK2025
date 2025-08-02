@@ -6,6 +6,7 @@ var captive:CharacterBody2D
 
 func _ready() -> void:
 	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 	add_to_group("Shelter")
 
 signal success()
@@ -21,3 +22,7 @@ func _on_body_entered(body:Node):
 			success.emit()
 		else:
 			fail.emit()
+
+func _on_body_exited(body:Node):
+	if body == captive and $AnimationPlayer.current_animation_position < 2.6:
+		$AnimationPlayer.stop()

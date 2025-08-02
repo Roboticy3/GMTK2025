@@ -388,6 +388,9 @@ editor_draw_drag_margin = true
 
 [node name="Hand" type="PinJoint2D" parent="." node_paths=PackedStringArray("player", "item_detector")]
 node_a = NodePath("..")
+angular_limit_enabled = true
+angular_limit_lower = -0.610865
+angular_limit_upper = 0.610865
 script = ExtResource("4_boad6")
 player = NodePath("..")
 item_detector = NodePath("../ItemDetector")

@@ -1445,8 +1445,24 @@ linear_velocity = Vector2(300, 300)
 position = Vector2(234, 218)
 linear_velocity = Vector2(300, 300)
 
+[node name="ItemBase4" parent="." instance=ExtResource("4_rww7g")]
+position = Vector2(1746, 306)
+linear_velocity = Vector2(300, 300)
+
+[node name="ItemBase5" parent="." instance=ExtResource("4_rww7g")]
+position = Vector2(1738, 299)
+linear_velocity = Vector2(300, 300)
+
+[node name="ItemBase6" parent="." instance=ExtResource("4_rww7g")]
+position = Vector2(1798, 306)
+linear_velocity = Vector2(300, 300)
+
+[node name="ItemBase7" parent="." instance=ExtResource("4_rww7g")]
+position = Vector2(1790, 299)
+linear_velocity = Vector2(300, 300)
+
 [node name="PlayerSpawn" type="CharacterBody2D" parent="." groups=["PlayerSpawn"]]
-position = Vector2(251, 210)
+position = Vector2(1888, 315)
 collision_layer = 0
 motion_mode = 1
 
@@ -1657,7 +1673,7 @@ position = Vector2(1941, 275)
 position = Vector2(1923, 205)
 
 [node name="FruitBranch6" parent="Fruit" instance=ExtResource("5_52c0i")]
-position = Vector2(1939, 194)
+position = Vector2(2904, 493)
 
 [node name="FruitBranch7" parent="Fruit" instance=ExtResource("5_52c0i")]
 position = Vector2(1836, 170)

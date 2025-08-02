@@ -78,8 +78,7 @@ func grab(item:Item):
 	item.reparent(get_tree().root)
 	
 	#move the item closer to indicate it has been picked up
-	var d := distance_to_item(item)
-	item.global_position = global_position + Vector2.from_angle(randf_range(0.0, 2 * PI)) * 6.0
+	item.global_position = global_position
 	
 	#pin to the hand
 	node_b = get_path_to(item)
