@@ -48,3 +48,7 @@ func all_reload(tree:SceneTree):
 	loose_reload(tree, &"Loose")
 	fruit_data.spawn_cycle(tree, &"FruitBranch")
 	spooear_data.spawn_cycle(tree, &"SpooearSpawner")
+
+func all_deregister():
+	fruit_data.spawn_deregister()
+	spooear_data.spawn_deregister()

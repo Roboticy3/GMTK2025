@@ -80,7 +80,7 @@ func start():
 	get_tree().change_scene_to_packed(START)
 
 	# Wait until current_scene changes
-	while get_tree().current_scene == old_scene:
+	while get_tree().current_scene == old_scene or !get_tree().current_scene:
 		await get_tree().process_frame
 	
 	spawn_player()
@@ -91,6 +91,7 @@ func start():
 	
 	load_profiles()
 	
+	if reset: world_profile.all_deregister()
 	world_profile.all_reload(get_tree())
 	
 	add_child(cycle_timer)
@@ -141,7 +142,22 @@ func get_current_shelter() -> NodePath:
 #endregion
 
 #region debug
+var reset = false
+
+func profile_reset():
+	reset = true
+	profile = PlayerProfile.new()
+	world_profile = WorldProfile.new()
+	save_profiles()
+	start()
+	reset = false
+
 func _input(event: InputEvent) -> void:
+	
+	if event is InputEventKey and event.is_pressed():
+		if event.keycode == KEY_DELETE:
+			profile_reset()
+	
 	if OS.has_feature("editor") and event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_1:
 			profile.current_food = profile.max_food

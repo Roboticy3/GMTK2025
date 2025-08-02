@@ -59,3 +59,6 @@ func spawn_cycle_fail(tree:SceneTree, spawner_group:StringName) -> void:
 		if spawners.get(spawner) == 1:
 			s.spawn()
 			spawners[spawner] = 0
+
+func spawn_deregister():
+	spawners = {}
