@@ -20,7 +20,7 @@ func change_karma(ending:StringName):
 			#negate a fail if player is in shelter.
 			if GameManager.get_current_shelter():
 				return
-			GameManager.profile.current_karma = GameManager.profile.current_karma + 0
+			GameManager.profile.current_karma = GameManager.profile.current_karma - 1
 
 	$AnimationPlayer.play("update_karma")
 

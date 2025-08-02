@@ -58,6 +58,7 @@ var stick_tr = null
 func stick():
 	print("sticking item")
 	stuck = true
+	collision_layer &= ~(1)
 	
 	if abs(angle_difference(rotation, 0)) < abs(angle_difference(rotation, PI)):
 		rotation = 0
