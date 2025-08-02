@@ -1,7 +1,5 @@
 extends Node
 
-var profile := GameManager.profile
-
 #slot empty and slot full animations
 @export var slot_animations:SpriteFrames
 
@@ -12,18 +10,22 @@ var profile := GameManager.profile
 @export var bar:Node2D
 
 func _ready() -> void:
-	profile.food_needed_changed.connect(update_bar.unbind(1))
-	update_bar()
-	
-	profile.max_food_changed.connect(rebuild_pips.unbind(1))
+	reconnect()
+	GameManager.profile_changed.connect(reconnect)
+
+func reconnect():
+	GameManager.profile.max_food_changed.connect(rebuild_pips.unbind(1))
 	rebuild_pips()
 	
-	profile.current_food_changed.connect(update_pips)
-	update_pips(profile.current_food)
+	GameManager.profile.food_needed_changed.connect(update_bar.unbind(1))
+	update_bar()
+	
+	GameManager.profile.current_food_changed.connect(update_pips)
+	update_pips(GameManager.profile.current_food)
 
 func update_bar():
 	var tween := bar.create_tween()
-	tween.tween_property(bar, "position:x", float(spacing * profile.food_needed), 1.0)
+	tween.tween_property(bar, "position:x", float(spacing * GameManager.profile.food_needed), 1.0)
 
 var pips:Array[AnimatedSprite2D] = []
 var food_level := 0
@@ -32,13 +34,17 @@ func rebuild_pips():
 		if c.is_in_group("Pips"):
 			c.queue_free()
 	
+	for p in pips:
+		p.queue_free()
+	
 	pips = []
-	for i in profile.max_food:
+	food_level = 0
+	for i in GameManager.profile.max_food:
 		var pip := AnimatedSprite2D.new()
 		add_child(pip)
 		pip.sprite_frames = slot_animations
 		pip.position.x = spacing * i
-		if i >= profile.food_needed:
+		if i >= GameManager.profile.food_needed:
 			pip.position.x += bar_spacing
 		pips.append(pip)
 

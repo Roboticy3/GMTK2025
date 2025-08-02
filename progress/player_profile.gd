@@ -29,3 +29,5 @@ signal current_karma_changed(to:int)
 	set(new_current_karma):
 		current_karma = clampi(new_current_karma, 0, max_karma)
 		current_karma_changed.emit(current_karma)
+
+@export var shelter:NodePath

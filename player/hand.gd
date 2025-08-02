@@ -6,7 +6,6 @@ extends Node2D
 var nearest_item:Item
 var held_item:Item
 
-@onready var profile := GameManager.profile
 @onready var timer := $EatTimer
 
 #region physics
@@ -91,7 +90,8 @@ func grab(item:Item):
 
 func drop(item:Item):
 	
-	held_item = null
+	if item == held_item:
+		held_item = null
 	
 	#mark for cleanup on cycle
 	item.add_to_group(&"Loose")
@@ -103,6 +103,12 @@ func drop(item:Item):
 	item.reparent(get_tree().current_scene)
 	
 	$Grab.play()
+
+#used by gamemanager to remove item from player's hadn before respawning
+func drop_held():
+	if !is_instance_valid(held_item):
+		return
+	drop(held_item)
 
 func throw(item:Item):
 	
@@ -123,7 +129,7 @@ func eat_held():
 		return
 	
 	if held_item.food_points:
-		profile.current_food += held_item.food_points
+		GameManager.profile.current_food += held_item.food_points
 		held_item.free()
 	
 	$Eat.play()

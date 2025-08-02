@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2ukx7umea84y"]
+
+[ext_resource type="Script" uid="uid://btu4kutjoqoqh" path="res://items/spooear/spooear_spawner.gd" id="1_qxdj0"]
+[ext_resource type="PackedScene" uid="uid://cyueqegtm0362" path="res://items/spooear/spooear.tscn" id="2_lufn6"]
+
+[node name="SpooearSpawner" type="Node2D"]
+script = ExtResource("1_qxdj0")
+spooear = ExtResource("2_lufn6")

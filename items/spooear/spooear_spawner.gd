@@ -22,7 +22,7 @@ func spawn():
 		printerr("spooear scene ", spooear, " does not have root of type Spooear!")
 		return
 	
-	s.position = Vector2(0, 40.0)
+	s.rotation = -PI * .5
 	
 	add_child(s)
 	s.grabbed.connect(cut.emit)

@@ -1,4 +1,4 @@
-class_name WorldProfile extends Node
+class_name WorldProfile extends Resource
 
 #region loose
 #loose objects to preseve between sessions. Mostly items in shelters

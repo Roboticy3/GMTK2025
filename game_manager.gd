@@ -1,16 +1,44 @@
 extends Node
 
-var current_room:Node
-var current_player:CharacterBody2D
-
-var ui:PackedScene
-
+#region serialization
 #replace with loader
-var profile := PlayerProfile.new()
-var world_profile := WorldProfile.new()
+signal profile_changed
+var profile := PlayerProfile.new() :
+	set(new_profile):
+		profile = new_profile
+		profile_changed.emit()
 
+signal world_profile_changed
+var world_profile := WorldProfile.new() :
+	set(new_world_profile):
+		world_profile= new_world_profile
+		world_profile_changed.emit()
+
+func load_profiles():
+	var test_p := load("user://profile.tres")
+	if test_p is PlayerProfile:
+		profile = test_p
+	
+	var test_w := load("user://world_profile.tres")
+	if test_w is WorldProfile:
+		world_profile = test_w
+	
+	if profile.shelter:
+		get_current_player().global_position = \
+		get_tree().current_scene.get_node(
+			profile.shelter
+		).global_position
+		set_player_spawn()
+
+func save_profiles():
+	ResourceSaver.save(profile, "user://profile.tres")
+	ResourceSaver.save(world_profile, "user://world_profile.tres")
+
+#endregion
+
+#region cycle
 var cycle_timer:Timer
-const START_CYCLE_TIME := 1.0
+const START_CYCLE_TIME := 200.0
 const MAX_CYCLE_TIME := 230.0
 const MIN_CYCLE_TIME := 70.0
 
@@ -20,6 +48,26 @@ func _init():
 	cycle_timer.one_shot = false
 	cycle_timer.wait_time = START_CYCLE_TIME
 	cycle_timer.timeout.connect(rain)
+
+signal cycle()
+func next_cycle():
+	
+	#restart the timer
+	cycle_timer.stop()
+	cycle_timer.wait_time = randf_range(MIN_CYCLE_TIME, MAX_CYCLE_TIME)
+	cycle_timer.start.call_deferred()
+	
+	spawn_player()
+	
+	
+	
+	cycle.emit()
+
+signal rain_started()
+func rain():
+	rain_started.emit()
+
+#endregion
 
 func _ready():
 	start()
@@ -37,12 +85,22 @@ func start():
 	
 	spawn_player()
 	spawn_ui()
+	
+	while !is_instance_valid(get_current_player()):
+		await get_tree().process_frame
+	
+	load_profiles()
+	
 	world_profile.all_reload(get_tree())
 	
 	add_child(cycle_timer)
 
+#region spawnage
+
 func spawn_player():
-	get_tree().call_group(&"Player", &"queue_free")
+	var current_player = get_current_player()
+	if is_instance_valid(current_player):
+		current_player.get_node("Hand").drop_held()
 	
 	await get_tree().process_frame
 	
@@ -60,32 +118,28 @@ func spawn_ui():
 	const UI := preload("res://ui/ui.tscn")
 	get_tree().current_scene.add_child(UI.instantiate())
 
-signal cycle()
-func next_cycle():
-	
-	
-	
-	#restart the timer
-	cycle_timer.stop()
-	cycle_timer.wait_time = randf_range(MIN_CYCLE_TIME, MAX_CYCLE_TIME)
-	cycle_timer.start.call_deferred()
-	
-	spawn_player()
-	
-	cycle.emit()
-
-signal rain_started()
-func rain():
-	rain_started.emit()
-
 func set_player_spawn():
-	var player := get_tree().get_first_node_in_group(&"Player")
+	var player := get_current_player()
 	var spawn := get_tree().get_first_node_in_group(&"PlayerSpawn")
 	
 	spawn.global_position = player.global_position
 	if player.is_on_floor():
 		spawn.global_position += player.get_floor_normal() * 10.0
 
+#endregion
+
+#region helpers
+func get_current_player() -> CharacterBody2D:
+	return get_tree().get_first_node_in_group(&"Player")
+
+func get_current_shelter() -> NodePath:
+	for s in get_tree().get_nodes_in_group(&"Shelter"):
+		if s.captive == get_current_player():
+			return s.get_path()
+	return NodePath("")
+#endregion
+
+#region debug
 func _input(event: InputEvent) -> void:
 	if OS.has_feature("editor") and event is InputEventKey and event.is_pressed():
 		if event.keycode == KEY_1:
@@ -108,3 +162,5 @@ func _input(event: InputEvent) -> void:
 			else:
 				camera.reparent(player)
 				camera.position = Vector2.ZERO
+
+#endregion

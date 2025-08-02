@@ -10,6 +10,7 @@ class_name Fruit extends Item
 ]
 
 func _ready():
+	super._ready()
 	var rng := RandomNumberGenerator.new()
 	modulate = hues[rng.randi_range(0, 5)]
 	add_to_group(&"Fruit")

@@ -1134,9 +1134,9 @@ texture = ExtResource("4_4ge2x")
 [node name="TextureRect" type="TextureRect" parent="Control/Ascension"]
 layout_mode = 1
 offset_left = 323.0
-offset_top = -30.0
+offset_top = -19.0
 offset_right = 449.0
-offset_bottom = 34.0
+offset_bottom = 45.0
 rotation = 1.5708
 texture = ExtResource("5_8b5i4")
 
