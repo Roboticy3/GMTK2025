@@ -60,8 +60,6 @@ func spawn_ui():
 signal cycle()
 func next_cycle():
 	
-	set_player_spawn()
-	
 	world_profile.all_cycle(get_tree())
 	
 	#restart the timer

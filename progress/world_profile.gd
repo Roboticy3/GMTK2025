@@ -91,6 +91,7 @@ func fruit_reload(tree:SceneTree, branch_group:StringName) -> void:
 
 func all_cycle(tree:SceneTree):
 	loose_cycle(tree, &"Loose", &"Shelter")
+	loose_cycle(tree, &"SpearStuck", &"")
 	fruit_cycle(tree, &"FruitBranch", &"Fruit")
 
 func all_reload(tree:SceneTree):

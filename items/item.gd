@@ -4,14 +4,24 @@ class_name Item extends RigidBody2D
 @export var throw_strength := 1000.0
 @export var food_points := 0
 
+var stuck := false
+var flying := false
+
+func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+
+func _on_body_entered(body:Node):
+	flying = false
+
 func set_glow(to:bool):
 	if to: $Sprite2D.material = glow_material
 	else: $Sprite2D.material = null
 
 func _on_throw():
-	var shape := $CollisionShape2D
-	shape.scale = Vector2.ONE * 3.0
-	var tween := shape.create_tween()
-	tween.tween_property(shape, "scale", Vector2.ONE, 0.4)
+	flying = true
+	look_at(global_position + linear_velocity)
+
+func _on_grab():
+	rotation = -90.0
 
 signal grabbed()

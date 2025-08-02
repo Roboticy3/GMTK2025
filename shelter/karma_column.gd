@@ -36,7 +36,9 @@ func karma_to_position(k:int) -> Vector2:
 
 func next_cycle():
 	match ending_state:
-		&"Success": profile.current_food -= 4
+		&"Success": 
+			GameManager.set_player_spawn()
+			profile.current_food -= 4
 		&"Fail": profile.current_food = profile.current_food_at_cycle
 	
 	profile.current_food_at_cycle = profile.current_food

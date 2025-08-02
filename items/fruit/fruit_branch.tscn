@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dx7sq0hvymac3"]
 
 [ext_resource type="Texture2D" uid="uid://beurerfmaatq7" path="res://sheets/grain1.png" id="1_8exvl"]
-[ext_resource type="Script" uid="uid://cpqixjbpnbj6y" path="res://items/fruit_branch.gd" id="1_8vw7a"]
-[ext_resource type="PackedScene" uid="uid://qjbrjsigoiw5" path="res://items/fruit.tscn" id="2_rfhe2"]
+[ext_resource type="Script" uid="uid://cpqixjbpnbj6y" path="res://items/fruit/fruit_branch.gd" id="1_8vw7a"]
+[ext_resource type="PackedScene" uid="uid://qjbrjsigoiw5" path="res://items/fruit/fruit.tscn" id="2_rfhe2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eqf66"]
 

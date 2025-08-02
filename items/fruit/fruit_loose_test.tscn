@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://d1yc0pdnx8yu1"]
 
-[ext_resource type="Script" uid="uid://dw8rv5dwxdvxo" path="res://items/fruit.gd" id="1_nsual"]
+[ext_resource type="Script" uid="uid://dw8rv5dwxdvxo" path="res://items/fruit/fruit.gd" id="1_nsual"]
 [ext_resource type="Shader" uid="uid://dxqqxjwtaf370" path="res://items/item_glow.gdshader" id="2_wtary"]
 [ext_resource type="Texture2D" uid="uid://dkejfd1w3r40q" path="res://sheets/froot_loops.png" id="3_3bxqt"]
 [ext_resource type="AudioStream" uid="uid://c3vavt0iei6au" path="res://c78/Roland CR-78 Samples/LC/CR78 LC-01.wav" id="4_sfru0"]

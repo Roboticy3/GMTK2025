@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cyueqegtm0362"]
+
+[ext_resource type="PackedScene" uid="uid://bc6pf1o7wqfid" path="res://items/item_base.tscn" id="1_awtua"]
+[ext_resource type="Texture2D" uid="uid://r105p5p3qtpw" path="res://sheets/spooear.png" id="2_5idef"]
+[ext_resource type="Script" uid="uid://d1rsodyqj6tqq" path="res://items/spooear/spooear.gd" id="2_ujlqt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_awtua"]
+radius = 6.0
+
+[node name="ItemBase" instance=ExtResource("1_awtua")]
+lock_rotation = true
+angular_damp = 100.0
+script = ExtResource("2_ujlqt")
+
+[node name="CollisionShape2D" parent="." index="0"]
+rotation = 1.57079
+shape = SubResource("CircleShape2D_awtua")
+
+[node name="Sprite2D" parent="." index="1"]
+modulate = Color(1, 1, 1, 1)
+position = Vector2(0, 0)
+rotation = 1.57079
+texture = ExtResource("2_5idef")

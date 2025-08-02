@@ -1,4 +1,4 @@
-extends Joint2D
+extends Node2D
 
 @export var player:CharacterBody2D
 
@@ -34,6 +34,8 @@ func _on_item_exited(body:Node2D):
 
 func distance_to_item(item:Item) -> float:
 	if !item: return INF
+	
+	if item.stuck: return INF
 	
 	return item.global_position.distance_to(global_position)
 
@@ -73,15 +75,17 @@ func grab(item:Item):
 	#remove glow
 	item.set_glow(false)
 	
+	item.set_process(false)
+	item.freeze = true
+	
 	await get_tree().process_frame
 	
-	item.reparent(get_tree().root)
+	item.reparent(self)
 	
 	#move the item closer to indicate it has been picked up
 	item.global_position = global_position
 	
-	#pin to the hand
-	node_b = get_path_to(item)
+	item._on_grab()
 	
 	$Grab.play()
 
@@ -92,11 +96,11 @@ func drop(item:Item):
 	#mark for cleanup on cycle
 	item.add_to_group(&"Loose")
 	
+	item.set_process(true)
+	item.freeze = false
+	
 	#give back to scene
 	item.reparent(get_tree().current_scene)
-	
-	#remove from pin
-	node_b = ""
 	
 	$Grab.play()
 
@@ -104,14 +108,11 @@ func throw(item:Item):
 	
 	drop(item)
 	
-	#cancel out existing momentum
-	item.apply_central_impulse(-item.linear_velocity)
-	
 	#move item out of the way of the gound
 	item.translate(-item.get_gravity().normalized() * 6.0)
 	
 	#yeet
-	item.apply_central_impulse(last_horizontal_facing * item.throw_strength)
+	item.linear_velocity = last_horizontal_facing * item.throw_strength
 	
 	item._on_throw()
 	
