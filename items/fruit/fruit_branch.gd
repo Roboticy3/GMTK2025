@@ -25,12 +25,18 @@ func spawn():
 	$Rope.rotation = 0.0
 	
 	f.position = Vector2(0, 40.0)
+	f.collision_layer |= 2
+	f.collision_mask |= 2
 	
 	add_child(f)
 	f.cut.connect($PinJoint2D.set_node_b.bind(""))
 	f.cut.connect($Rope.reparent.bind(self))
 	f.cut.connect(cut.emit)
 	f.cut.connect(set.bind("spawned", false))
+	f.cut.connect(func ():
+		f.collision_layer &= ~(2)
+		f.collision_mask &= ~(2)
+	)
 	f.grabbed.connect(f.cut.emit)
 	
 	$Rope.reparent(f)
