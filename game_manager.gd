@@ -167,5 +167,12 @@ func _input(event: InputEvent) -> void:
 			profile = PlayerProfile.new()
 			world_profile = WorldProfile.new()
 			save_profiles()
+		elif event.keycode == KEY_7:
+			var s := get_tree().get_first_node_in_group(&"Spooear")
+			if s is Spooear:
+				get_current_player().global_position = s.global_position
+				get_viewport().get_camera_2d().position = Vector2.ZERO
+			else:
+				printerr("No spears in the world!!")
 
 #endregion

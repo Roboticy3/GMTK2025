@@ -16,7 +16,10 @@ func _physics_process(delta: float) -> void:
 		time_in_air += delta
 
 func _on_body_entered(body:Node):
+	if body is Item:
+		return
 	flying = false
+	
 
 func set_glow(to:bool):
 	if to: $Sprite2D.material = glow_material
@@ -28,5 +31,6 @@ func _on_throw():
 
 func _on_grab():
 	rotation = -90.0
+	flying = false
 
 signal grabbed()

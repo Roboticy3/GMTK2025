@@ -7,6 +7,10 @@ extends Node
 @export var pip_seconds := 15.0
 
 func _ready() -> void:
+	reconnect()
+	GameManager.profile_changed.connect(reconnect)
+
+func reconnect():
 	build_pips()
 	GameManager.cycle.connect(func ():
 		set_process(false)

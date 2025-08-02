@@ -17,17 +17,30 @@ func _physics_process(delta: float) -> void:
 func _on_body_entered(body:Node):
 	if body is TileMapLayer:
 		try_stick(body)
+	if body is Fruit:
+		linear_velocity += global_transform.x * throw_strength
+		
 	super._on_body_entered(body)
 	time_in_air = 0.0
 
+const STICK_CHECKS := [
+	8.0,
+	12.0,
+	16.0,
+	18.0
+]
+
 func try_stick(body:TileMapLayer):
-	if time_in_air >= 0.3:
+	if time_in_air >= 0.3 or !flying:
 		return
 	
-	var cell_forward := body.local_to_map(
-		body.to_local(global_position + global_transform.x * 16.0)
-	)
-	var tile = body.get_cell_tile_data(cell_forward)
+	var tile = null
+	for s in STICK_CHECKS:
+		var cell_forward := body.local_to_map(
+			body.to_local(global_position + global_transform.x * s)
+		)
+		tile = body.get_cell_tile_data(cell_forward)
+		if tile: break
 	
 	var cell_over := body.local_to_map(
 		body.to_local(global_position + global_transform.y * 8.0 - global_transform.x * 8.0)

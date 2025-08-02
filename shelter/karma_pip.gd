@@ -8,6 +8,7 @@ func _ready() -> void:
 	GameManager.profile_changed.connect(reconnect)
 
 func reconnect():
+	_on_karma_changed(GameManager.profile.current_karma)
 	GameManager.profile.current_karma_changed.connect(_on_karma_changed)
 
 func _on_karma_changed(k:int) -> void:
