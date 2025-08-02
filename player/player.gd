@@ -43,11 +43,13 @@ var idling := false
 var touching_rope_type:StringName
 var current_tile_map_cell:Variant
 var current_tile_map_layer:TileMapLayer
+var current_spoon_rope:Spooear
 var controller:Controller
 #endregion
 
 #region exports
 @export var tilemap_detector:Area2D
+@export var item_detector:Area2D
 #endregion
 
 #region motion functions
@@ -167,6 +169,8 @@ func rope_horizontal(axis:Vector2, delta:float):
 		var local_center := current_tile_map_layer.map_to_local(current_tile_map_cell)
 		var center := current_tile_map_layer.to_global(local_center)
 		global_position.y = center.y
+	if current_spoon_rope:
+		global_position.y = current_spoon_rope.global_position.y
 		
 	velocity.y = 0.0
 
@@ -199,6 +203,20 @@ func update_colliding_tile():
 		current_tile_map_cell = null
 
 func update_rope_type(axis):
+	update_rope_type_tilemap(axis)
+	update_rope_type_spoon(axis)
+	
+	if current_spoon_rope and current_tile_map_layer and current_tile_map_cell:
+		var tile_local := current_tile_map_layer.map_to_local(current_tile_map_cell)
+		var tile_global := current_tile_map_layer.to_global(tile_local)
+		var tile_distance := tile_global.distance_to(global_position)
+		var spoon_distance := current_spoon_rope.global_position.distance_to(global_position)
+		if spoon_distance < tile_distance:
+			current_tile_map_layer = null
+		else:
+			current_spoon_rope = null
+
+func update_rope_type_tilemap(axis):
 	var found_tile_map:TileMapLayer
 	touching_rope_type = &""
 	touching_tunnel = false
@@ -216,6 +234,14 @@ func update_rope_type(axis):
 			if current_tile and current_tile.has_custom_data("is_tunnel"):
 				touching_tunnel = current_tile.get_custom_data("is_tunnel")
 	current_tile_map_layer = found_tile_map
+
+func update_rope_type_spoon(axis):
+	var spoon_rope:Spooear
+	for b in item_detector.get_overlapping_bodies():
+		if b is Spooear and b.stuck:
+			touching_rope_type = &"Horizontal"
+			spoon_rope = b
+	current_spoon_rope = spoon_rope
 
 func update_facing():
 	if !velocity.is_zero_approx():

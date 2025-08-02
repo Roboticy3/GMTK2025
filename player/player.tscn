@@ -14,7 +14,7 @@
 radius = 6.08276
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g1dw6"]
-radius = 20.0
+radius = 16.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rkbax"]
 animation = &"idle"
@@ -329,13 +329,14 @@ _data = {
 &"walking_right": SubResource("Animation_qjkh3")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("tilemap_detector") groups=["Entity", "Player"]]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("tilemap_detector", "item_detector") groups=["Entity", "Player"]]
 texture_filter = 3
 collision_layer = 2
 floor_block_on_wall = false
 floor_max_angle = 0.872665
 script = ExtResource("1_onrkg")
 tilemap_detector = NodePath("TileMapLayerDetector")
+item_detector = NodePath("ItemDetector")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 4)
