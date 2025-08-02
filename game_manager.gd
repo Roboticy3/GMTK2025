@@ -10,12 +10,15 @@ var profile := PlayerProfile.new()
 var world_profile := WorldProfile.new()
 
 var cycle_timer:Timer
+const START_CYCLE_TIME := 1.0
+const MAX_CYCLE_TIME := 230.0
+const MIN_CYCLE_TIME := 70.0
 
 func _init():
 	cycle_timer = Timer.new()
 	cycle_timer.autostart = true
 	cycle_timer.one_shot = false
-	cycle_timer.wait_time = 120.0
+	cycle_timer.wait_time = START_CYCLE_TIME
 	cycle_timer.timeout.connect(rain)
 
 func _ready():
@@ -64,7 +67,7 @@ func next_cycle():
 	
 	#restart the timer
 	cycle_timer.stop()
-	cycle_timer.wait_time = randf_range(80.0, 230.0)
+	cycle_timer.wait_time = randf_range(MIN_CYCLE_TIME, MAX_CYCLE_TIME)
 	cycle_timer.start.call_deferred()
 	
 	spawn_player()

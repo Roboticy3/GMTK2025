@@ -5,7 +5,6 @@ extends Node
 func _ready() -> void:
 	GameManager.rain_started.connect($AnimationPlayer.play.bind("rain"))
 	GameManager.cycle.connect(func ():
-		if $AnimationPlayer.is_playing():
-			return
-		$AnimationPlayer.play.bind("cycle")
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("cycle")
 	)
